@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-03-04T09:15:31.211Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="w3pmLmkMIWnCfyds6eQX" version="20.5.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-03-04T09:18:48.337Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="EbbftLgGfIu581vuCHU-" version="20.5.1" type="github">
   <diagram id="atlzubRJtIdZ05IYsupF" name="Trang-1">
     <mxGraphModel dx="1829" dy="997" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="2339" math="0" shadow="0">
       <root>
@@ -55,7 +55,7 @@
         <mxCell id="YjuqUlmkh9xdjHbihAbf-26" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;" vertex="1" parent="YjuqUlmkh9xdjHbihAbf-24">
           <mxGeometry x="45" y="150" width="10" height="450" as="geometry" />
         </mxCell>
-        <mxCell id="YjuqUlmkh9xdjHbihAbf-25" value="send user&#39;s information, level, language" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=0.5;exitY=0.375;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="YjuqUlmkh9xdjHbihAbf-22" target="YjuqUlmkh9xdjHbihAbf-24">
+        <mxCell id="YjuqUlmkh9xdjHbihAbf-25" value="send information" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;exitX=0.5;exitY=0.375;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="YjuqUlmkh9xdjHbihAbf-22" target="YjuqUlmkh9xdjHbihAbf-24">
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="660" y="380" as="sourcePoint" />
             <mxPoint x="740" y="380" as="targetPoint" />
@@ -122,6 +122,24 @@
           <mxGeometry width="80" relative="1" as="geometry">
             <mxPoint x="590" y="450" as="sourcePoint" />
             <mxPoint x="670" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="63BljpOQrvg3CTDWRkGp-2" value="request level, language" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;exitX=-0.39;exitY=0.431;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.246;entryY=0.77;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="YjuqUlmkh9xdjHbihAbf-22" target="YjuqUlmkh9xdjHbihAbf-16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="680" y="450" as="sourcePoint" />
+            <mxPoint x="600" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="63BljpOQrvg3CTDWRkGp-3" value="choose level and language" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=-0.299;entryY=0.81;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="YjuqUlmkh9xdjHbihAbf-12" target="YjuqUlmkh9xdjHbihAbf-16">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="450" y="450" as="sourcePoint" />
+            <mxPoint x="530" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="63BljpOQrvg3CTDWRkGp-4" value="send information" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;entryX=-0.117;entryY=0.942;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="YjuqUlmkh9xdjHbihAbf-16" target="YjuqUlmkh9xdjHbihAbf-22">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="510" y="450" as="sourcePoint" />
+            <mxPoint x="590" y="450" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
