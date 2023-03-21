@@ -10,16 +10,20 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.21.0",
+    "@babel/core": "^7.21.3",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.20.2",
     "babel-cli": "^6.26.0",
-    "nodemon": "^2.0.20"
+    "mysql2": "^3.2.0",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.29.3",
+    "sequelize-cli": "^6.6.0"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mariadb": "^3.1.1"
   }
 }
