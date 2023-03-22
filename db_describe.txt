@@ -1,0 +1,13 @@
+
+1.
+    test nơi lưu đoạn văn bản
+    exam người dùng gõ văn bản thông qua các exam gồm nhiều test
+    test với exam quan hệ n-n 
+    -> sinh ra exam_test_mapping để xem exam gồm những test nào
+2. 
+    user có thể làm nhiều exam khác nhau -> quan hệ n-n 
+    -> sinh ra user_exam_mapping để xem user nào đã làm exam nào có điểm số và đánh giá 
+    khi user gõ xong lưu vào user_exam_mapping điểm số, wpm, acc,...
+3.
+    bảng record xếp hạng có thể theo nhiều cách bảng này lấy thông tin từ user_exam_mapping 
+    xếp hạng theo từng exam hay chung chung.
