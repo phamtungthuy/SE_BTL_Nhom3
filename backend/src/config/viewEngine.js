@@ -1,12 +1,5 @@
 import express from 'express';
 
-
-
-
-
-
-
-
 let conFigViewEngine = async (app) => {
 
     app.use(express.static("./src/public"));
