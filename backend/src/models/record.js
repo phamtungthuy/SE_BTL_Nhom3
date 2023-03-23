@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      console.log('heello');
       // define association here
+      Record.belongsTo(models.Typing, { foreignKey: 'typing_id' });
     }
   }
   Record.init({
@@ -16,14 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    paragraph_id: {
-      type: DataTypes.INTEGER,
       allowNull: false
     },
     typing_id: {

@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Paragraph.belongsTo(models.Typing, { foreignKey: 'paragraph_id' });
     }
   }
   Paragraph.init({

@@ -29,6 +29,31 @@ module.exports = {
         type: Sequelize.DOUBLE,
         defaultValue: 0
       }
+    })
+    .then(() => {
+      queryInterface.addConstraint('Typings', {
+        fields: ['paragraph_id'],
+        type: 'foreign key',
+        name: 'paragraph_typing_fk',
+        references: {
+          table: 'Paragraphs',
+          field: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      })
+    }).then(() => {
+      queryInterface.addConstraint('Typings', {
+        fields: ['user_id'],
+        type: 'foreign key',
+        name: 'user_typing_fk',
+        references: {
+          table: 'Users',
+          field: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      })
     });
   },
   async down(queryInterface, Sequelize) {

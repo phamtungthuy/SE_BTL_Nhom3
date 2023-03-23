@@ -9,14 +9,6 @@ module.exports = {
         autoIncrement: true,
         allowNull: false
       },
-      user_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
-      paragraph_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       typing_id: {
         type: Sequelize.INTEGER,
         allowNull: false
@@ -33,6 +25,18 @@ module.exports = {
         type: Sequelize.TIME,
         allowNull: true
       }
+    }).then(() => {
+      queryInterface.addConstraint('Records', {
+        fields: ['typing_id'],
+        type: 'foreign key',
+        name: 'typing_record_fk',
+        references: {
+          table: 'Typings',
+          field: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      })
     });
   },
   async down(queryInterface, Sequelize) {

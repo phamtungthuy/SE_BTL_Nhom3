@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Typing.hasMany(models.Record, { foreignKey: 'typing_id' });
+      Typing.belongsTo(models.User, { foreignKey: 'user_id' });
+      Typing.belongsTo(models.Paragraph, { foreignKey: 'paragraph_id' });
     }
   }
   Typing.init({
