@@ -1,0 +1,3 @@
+- paragraph lưu đoạn văn bản
+- user truy cập đến bảng này qua user_paragraph_mapping (quan hệ n-n)
+- xếp hạng lấy qua bảng record bảng này tham chiếu đến user_paragraph_mapping nhưng chi tiết hơn
