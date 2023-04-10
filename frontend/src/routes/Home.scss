@@ -1,0 +1,29 @@
+.header {
+    height: 30px;
+    width: 100vw;
+    background-color: #6a9ca3;
+}
+.body-container {
+    display: flex;
+    flex-direction: row;
+    .navigation {
+        ul {
+            height: 100vh;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: black;
+            li {
+                padding: 10px;
+                color: white;
+                border-bottom: 1px solid #a2a2a2;
+                &:hover{
+                    cursor: pointer;
+                    background-color: #a2a2a2;
+                }
+            }
+            
+        }
+    }
+
+}
