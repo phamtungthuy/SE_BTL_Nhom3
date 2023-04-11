@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Paragraph.belongsTo(models.Typing, { foreignKey: 'paragraph_id' });
+      // Paragraph.belongsTo(models.Typing, { foreignKey: 'paragraph_id' });
     }
   }
   Paragraph.init({
@@ -36,10 +36,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
       allowNull: false
-    }
+    },
+    createdAt: {
+      field: 'created_at',
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+        field: 'updated_at',
+        type: DataTypes.DATE,
+    },
   }, {
     sequelize,
     modelName: 'Paragraph',
+    timestamps: false,
+    createdAt: false,
+    updatedAt: false
   });
   return Paragraph;
 };

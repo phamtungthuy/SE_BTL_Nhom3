@@ -27,12 +27,13 @@ module.exports = {
         defaultValue: false,
         allowNull: false
       },
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      }
+      // overlap
+      // id: {
+      //   allowNull: false,
+      //   autoIncrement: true,
+      //   primaryKey: true,
+      //   type: Sequelize.INTEGER
+      // }
     });
   },
   async down(queryInterface, Sequelize) {
