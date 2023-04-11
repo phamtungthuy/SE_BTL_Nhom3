@@ -6,8 +6,9 @@ class Typing extends Component {
 
     render() {
         return (
-            <div className="hello">
-                Typing
+            <div>
+                <div className='paragraph-container'></div>
+                <div className='typing'></div>
             </div>
         );
     }

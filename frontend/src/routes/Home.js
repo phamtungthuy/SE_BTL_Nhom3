@@ -12,21 +12,34 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentComponent: null
+            currentComponent: null,
+            currentActive: null
         };
     }
 
     handleClickTyping = () => {
-        this.setState({currentComponent: <Typing />});
+        this.setState({
+            currentComponent: <Typing />,
+            currentActive: 'Typing'
+        });
     }
     handleClickPractice = () => {
-        this.setState({currentComponent: <Practice />});
+        this.setState({
+            currentComponent: <Practice />,
+            currentActive: 'Practice'
+        });
     }
     handleClickTest = () => {
-        this.setState({currentComponent: <Test />});
+        this.setState({
+            currentComponent: <Test />,
+            currentActive: 'Test'
+        });
     }
     handleClickRecord = () => {
-        this.setState({currentComponent: <Record />});
+        this.setState({
+            currentComponent: <Record />,
+            currentActive: 'Record'
+        });
     }
     render() {
         return (
@@ -35,10 +48,10 @@ class Home extends Component {
                 <div className="body-container">
                     <div className="navigation">
                         <ul>
-                            <li onClick={this.handleClickTyping}>Typing</li>
-                            <li onClick={this.handleClickPractice}>Practice</li>
-                            <li onClick={this.handleClickTest}>Test</li>
-                            <li onClick={this.handleClickRecord}>Record</li>
+                            <li onClick={this.handleClickTyping} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>Typing</li>
+                            <li onClick={this.handleClickPractice} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>Practice</li>
+                            <li onClick={this.handleClickTest} className = {this.state.currentActive == 'Test' ? 'active' : ''}>Test</li>
+                            <li onClick={this.handleClickRecord} className = {this.state.currentActive == 'Record' ? 'active' : ''}>Record</li>
                         </ul>
                     </div>
                     <div className="body-content">
