@@ -1,0 +1,28 @@
+.body-content {
+
+    .paragraph-container {
+        width: 70%;
+        height: 500px;
+        background-color: #ccc;
+        margin: 10px auto;
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .typing {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        input {
+            width: 70%;
+            background-color: #ccc;
+            margin: 0 auto;
+            border-radius: 10px;
+            color: black;
+            outline: none;
+            border: none;
+            padding: 10px 20px;
+        }
+    }
+}

@@ -1,15 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { path } from '../utils'
+import './Typing.scss'
 class Typing extends Component {
 
     render() {
         return (
-            <div>
-                <div className='paragraph-container'></div>
-                <div className='typing'></div>
-            </div>
+            <Fragment>
+                <div className='paragraph-container'>
+                    <p>paragraph</p>
+                </div>
+                <div className='typing'>
+                    <input />
+                </div>
+            </Fragment>
         );
     }
 
