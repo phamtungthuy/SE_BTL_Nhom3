@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { path } from '../utils'
+import Typing from './Typing'
 class Practice extends Component {
 
     render() {
         return (
             <div>
-                Practice
+                <Typing>
+                </Typing>
             </div>
         );
     }

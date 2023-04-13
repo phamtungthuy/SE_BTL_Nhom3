@@ -17,41 +17,22 @@ class Home extends Component {
         };
     }
 
-    handleClickTyping = () => {
+    setCurrentComponent(component) {
         this.setState({
-            currentComponent: <Typing />,
-            currentActive: 'Typing'
-        });
-    }
-    handleClickPractice = () => {
-        this.setState({
-            currentComponent: <Practice />,
-            currentActive: 'Practice'
-        });
-    }
-    handleClickTest = () => {
-        this.setState({
-            currentComponent: <Test />,
-            currentActive: 'Test'
-        });
-    }
-    handleClickRecord = () => {
-        this.setState({
-            currentComponent: <Record />,
-            currentActive: 'Record'
-        });
+            currentComponent: component
+        })
     }
     render() {
         return (
-            <div>
+            <div className = "page">
                 <div className="header"></div>
                 <div className="body-container">
                     <div className="navigation">
                         <ul>
-                            <li onClick={this.handleClickTyping} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>Typing</li>
-                            <li onClick={this.handleClickPractice} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>Practice</li>
-                            <li onClick={this.handleClickTest} className = {this.state.currentActive == 'Test' ? 'active' : ''}>Test</li>
-                            <li onClick={this.handleClickRecord} className = {this.state.currentActive == 'Record' ? 'active' : ''}>Record</li>
+                            <li onClick={() => this.setCurrentComponent(<Typing />)} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>Typing</li>
+                            <li onClick={() => this.setCurrentComponent(<Practice />)} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>Practice</li>
+                            <li onClick={() => this.setCurrentComponent(<Test />)} className = {this.state.currentActive == 'Test' ? 'active' : ''}>Test</li>
+                            <li onClick={() => this.setCurrentComponent(<Record />)} className = {this.state.currentActive == 'Record' ? 'active' : ''}>Record</li>
                         </ul>
                     </div>
                     <div className="body-content">
@@ -60,6 +41,10 @@ class Home extends Component {
                         </Switch>
                     </div>
                 </div>
+                <div className="footer">
+
+                </div>
+                
             </div>
         );
     }

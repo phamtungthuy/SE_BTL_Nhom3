@@ -1,14 +1,21 @@
+$header-height: 30px;
+$footer-height: 50px;
 .header {
-    height: 30px;
+    height: $header-height;
     width: 100vw;
     background-color: #6a9ca3;
+}
+
+.page {
+    height: 100vh;
 }
 .body-container {
     display: flex;
     flex-direction: row;
+    height: calc(100% - #{$footer-height +$header-height});
     .navigation {
         ul {
-            height: 100vh;
+            height: 100%;
             list-style: none;
             padding: 0;
             margin: 0;
@@ -31,4 +38,10 @@
     .body-content {
         flex: 70%;
     }
+}
+
+.footer {
+    height: $footer-height;
+    width: 100vw;
+    background-color: #000;
 }

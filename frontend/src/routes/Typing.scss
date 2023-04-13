@@ -3,17 +3,25 @@
     .paragraph-container {
         width: 70%;
         height: 500px;
-        background-color: #ccc;
+        background-color: #000;
         margin: 10px auto;
         border-radius: 10px;
-        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        font-size: 20px;
+        p {
+            color: white;
+            .finished {
+                color: #a19b9b;
+            }
+        }
+
     }
     
     .typing {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        text-align: center;
         input {
             width: 70%;
             background-color: #ccc;

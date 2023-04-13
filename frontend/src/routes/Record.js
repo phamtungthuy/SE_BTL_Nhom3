@@ -7,7 +7,7 @@ class Record extends Component {
     render() {
         return (
             <div>
-                Record
+                
             </div>
         );
     }
