@@ -17,9 +17,10 @@ class Home extends Component {
         };
     }
 
-    setCurrentComponent(component) {
+    setCurrentComponent(component, name) {
         this.setState({
-            currentComponent: component
+            currentComponent: component,
+            currentActive: name
         })
     }
     render() {
@@ -29,10 +30,20 @@ class Home extends Component {
                 <div className="body-container">
                     <div className="navigation">
                         <ul>
-                            <li onClick={() => this.setCurrentComponent(<Typing />)} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>Typing</li>
-                            <li onClick={() => this.setCurrentComponent(<Practice />)} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>Practice</li>
-                            <li onClick={() => this.setCurrentComponent(<Test />)} className = {this.state.currentActive == 'Test' ? 'active' : ''}>Test</li>
-                            <li onClick={() => this.setCurrentComponent(<Record />)} className = {this.state.currentActive == 'Record' ? 'active' : ''}>Record</li>
+                            <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
+                                <span>Typing</span>
+                                <i class="fas fa-chevron-right"></i></li>
+                            <li onClick={() => this.setCurrentComponent(<Practice />, 'Practice')} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>
+                                Practice
+                                <i class="fas fa-chevron-right"></i></li>
+                            <li onClick={() => this.setCurrentComponent(<Test />, 'Test')} className = {this.state.currentActive == 'Test' ? 'active' : ''}>
+                                Test
+                                <i class="fas fa-chevron-right"></i>
+                            </li>
+                            <li onClick={() => this.setCurrentComponent(<Record />, 'Record')} className = {this.state.currentActive == 'Record' ? 'active' : ''}>
+                                Record
+                                <i class="fas fa-chevron-right"></i>    
+                            </li>
                         </ul>
                     </div>
                     <div className="body-content">
@@ -42,7 +53,18 @@ class Home extends Component {
                     </div>
                 </div>
                 <div className="footer">
-
+                    <ul>
+                        <li onClick={() => this.setCurrentComponent()}>About us</li>
+                        <li onClick={() => this.setCurrentComponent()}>Contact us</li>
+                        <li onClick={() => this.setCurrentComponent()}>Support</li>
+                        <li onClick={() => this.setCurrentComponent()}>Terms</li>
+                        <li onClick={() => this.setCurrentComponent()}>Github</li>
+                        <li onClick={() => this.setCurrentComponent()}>Discord</li>
+                        <li onClick={() => this.setCurrentComponent()}>Twitter</li>
+                        <li onClick={() => this.setCurrentComponent()}>Security</li>
+                        <li onClick={() => this.setCurrentComponent()}>Privacy</li>
+                        <li onClick={() => this.setCurrentComponent()}>Questions</li>
+                    </ul>
                 </div>
                 
             </div>

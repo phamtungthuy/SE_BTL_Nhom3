@@ -1,4 +1,4 @@
-$header-height: 30px;
+$header-height: 50px;
 $footer-height: 50px;
 .header {
     height: $header-height;
@@ -20,13 +20,22 @@ $footer-height: 50px;
             padding: 0;
             margin: 0;
             background-color: black;
+            display: flex;
+            flex-direction: column;
             li {
-                padding: 10px;
+                display: inline-block;
                 color: white;
+                text-transform: uppercase;
                 border-bottom: 1px solid #a2a2a2;
+                padding: 20px 10px;
+                width: 150px;
                 &:hover{
                     cursor: pointer;
                     background-color: #a2a2a2;
+                }
+                i {
+                    float: right;
+                    font-size: 20px;
                 }
             }
             
@@ -43,5 +52,21 @@ $footer-height: 50px;
 .footer {
     height: $footer-height;
     width: 100vw;
-    background-color: #000;
+    background-color: #ccc;
+    border-top: 2px solid #000;
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 20px;
+        line-height: $footer-height;
+        font-size: 20px;
+        li {
+            &:hover {
+                cursor: pointer;
+            
+            }
+        }
+    }
 }
