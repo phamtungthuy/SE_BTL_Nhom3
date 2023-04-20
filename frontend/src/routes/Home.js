@@ -27,7 +27,7 @@ class Home extends Component {
         return (
             <div className = "page">
                 <div className="header"></div>
-                <div className="body-container">
+                <div className="body-container" isOpen = {false}>
                     <div className="navigation">
                         <ul>
                             <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
@@ -50,6 +50,7 @@ class Home extends Component {
                         <Switch>
                             <Route render={() => this.state.currentComponent} />
                         </Switch>
+                       
                     </div>
                 </div>
                 <div className="footer">

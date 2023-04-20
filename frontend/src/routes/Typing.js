@@ -12,14 +12,26 @@ class Typing extends Component {
             end: 0,
             iterator: 0,
             range: 100,
+            timeLeft: 60
         }
     }
     componentDidMount = () => {
-        console.log( )
         this.setState({
             Paragraph: this.state.Paragraph + " ",
             end: this.state.Paragraph.indexOf(' ', this.state.range)
         })
+        this.timerID = setInterval(() => {
+            if(this.state.timeLeft > 0) {
+                this.setState({
+                    timeLeft: this.state.timeLeft - 1
+                  });
+            } else {
+                this.setState({
+                    timeLeft: 60
+                })
+            }
+            
+          }, 1000);
     }
 
     componentDidUpdate = () => {
@@ -35,6 +47,17 @@ class Typing extends Component {
             } 
 
         }
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.timerID);
+      }
+
+    getTimer = () => {
+        let minute = Math.floor(this.state.timeLeft / 60);
+        let second = this.state.timeLeft % 60;
+        if(second < 10) second = "0" + second;
+        return (minute + ":" + second);
     }
 
     handleOnChange = (event) => {
@@ -67,7 +90,12 @@ class Typing extends Component {
                     <p></p>
                 </div>
                 <div className='typing'>
-                    <input onChange={this.handleOnChange}/>
+                    <div className = "typing-container">
+                        <input onChange={this.handleOnChange}/>
+                        <button>{this.getTimer()}</button>
+                        <button className ="reload"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                    
                 </div>
             </Fragment>
         );

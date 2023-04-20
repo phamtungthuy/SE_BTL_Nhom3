@@ -1,5 +1,6 @@
 $header-height: 50px;
 $footer-height: 50px;
+$body-height: calc(100% - #{$footer-height +$header-height});
 .header {
     height: $header-height;
     width: 100vw;
@@ -12,7 +13,7 @@ $footer-height: 50px;
 .body-container {
     display: flex;
     flex-direction: row;
-    height: calc(100% - #{$footer-height +$header-height});
+    height: $body-height;
     .navigation {
         ul {
             height: 100%;
@@ -45,9 +46,13 @@ $footer-height: 50px;
         }
     }
     .body-content {
-        flex: 70%;
+        // flex: 70%;
+        height: 100%;
+        width: 100%;
+        overflow-y: scroll;
     }
 }
+
 
 .footer {
     height: $footer-height;
@@ -70,3 +75,4 @@ $footer-height: 50px;
         }
     }
 }
+

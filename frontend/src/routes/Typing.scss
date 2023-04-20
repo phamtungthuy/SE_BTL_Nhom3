@@ -11,6 +11,7 @@
         align-items: center;
         gap: 5px;
         font-size: 20px;
+        text-align: center;
         p {
             color: white;
             .finished {
@@ -22,15 +23,38 @@
     
     .typing {
         text-align: center;
-        input {
+        .typing-container {
             width: 70%;
-            background-color: #ccc;
             margin: 0 auto;
-            border-radius: 10px;
-            color: black;
-            outline: none;
-            border: none;
-            padding: 10px 20px;
+            background-color: #f0eeee;
+            border-radius: 2px;
+            input {
+                width: 70%;
+                background-color: #ccc;
+                margin: 0 auto;
+                border-radius: 10px;
+                color: black;
+                outline: none;
+                border: none;
+                padding: 10px 20px;
+            }
+            button {
+                border-radius: 20px;
+                padding: 10px 20px;
+                background-color: #000;
+                color: #fff;
+                border: none;
+                margin: 0 10px;
+            }
+            button.reload {
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+            i {
+                font-size: 20px;
+            }
         }
+
     }
 }
