@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 class CustomParagraphs extends React.Component {
@@ -11,13 +11,19 @@ class CustomParagraphs extends React.Component {
 
 
   render() {
-    const minutes = Math.floor(this.state.timeLeft / 60);
-    const seconds = this.state.timeLeft % 60;
 
     return (
-      <div>
-        Thời gian còn lại: {minutes}:{seconds < 10 ? '0' : ''}{seconds}
-      </div>
+      <Fragment>
+         <div className ="edit-container">
+            <div className="edit-content">
+              <p className="edit-Paragraph" contentEditable="true">{this.props.paragraph}</p>
+            </div>
+            <div className ="edit-bar">
+              <button>Save</button>
+              <button>Cancel</button>
+            </div>
+         </div>
+      </Fragment>
     );
   }
 }

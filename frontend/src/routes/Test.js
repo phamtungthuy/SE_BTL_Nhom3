@@ -18,7 +18,7 @@ class Test extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.admin.isLoggedIn
-    };
+    }; 
 };
 
 const mapDispatchToProps = dispatch => {

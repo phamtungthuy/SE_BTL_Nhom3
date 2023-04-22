@@ -13,9 +13,12 @@ class Home extends Component {
         super(props);
         this.state = {
             currentComponent: null,
-            currentActive: null
+            currentActive: null,
+            shouldRedirectToLogin: false,
+        
         };
     }
+
 
     setCurrentComponent(component, name) {
         this.setState({
@@ -23,10 +26,33 @@ class Home extends Component {
             currentActive: name
         })
     }
+
+    componentDidMount() {
+        this.unlisten = this.props.history.listen((location, action) => {
+          if (action === 'POP') {
+            window.location.reload();
+            console.log('hello');
+          }
+        });
+      }
+      
+      componentWillUnmount() {
+        window.history.back();
+      }
+      
+
     render() {
+        if(this.state.shouldRedirectToLogin) {
+            this.setState({
+                shouldRedirectToLogin: false
+            })
+            return <Redirect to="/login" />;
+        }
         return (
             <div className = "page">
-                <div className="header"></div>
+                <div className="header">
+                    <button onClick = {() => {this.setState({shouldRedirectToLogin: true})}}>Login</button>
+                </div>
                 <div className="body-container" isOpen = {false}>
                     <div className="navigation">
                         <ul>

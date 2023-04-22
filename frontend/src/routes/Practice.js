@@ -3,13 +3,13 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { path } from '../utils'
 import Typing from './Typing'
+import CustomParagraphs from './CustomParagraphs';
 class Practice extends Component {
 
     render() {
         return (
             <div>
-                <Typing>
-                </Typing>
+                <Typing type='practice'/>
             </div>
         );
     }
