@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-
+import {emitter} from '../utils/emitter';
 class CustomParagraphs extends React.Component {
   constructor(props) {
     super(props);
@@ -16,11 +16,21 @@ class CustomParagraphs extends React.Component {
       <Fragment>
          <div className ="edit-container">
             <div className="edit-content">
-              <p className="edit-Paragraph" contentEditable="true">{this.props.paragraph}</p>
+              <p 
+              className="edit-Paragraph" contentEditable="true"
+              suppressContentEditableWarning = {true}
+              >{this.props.paragraph}</p>
             </div>
             <div className ="edit-bar">
-              <button>Save</button>
-              <button>Cancel</button>
+              <button onClick = {(event) => {
+                const editedParagraph = event.target.parentNode.previousSibling.firstChild.textContent;
+                emitter.emit('EVENT_SAVE_PARAGRAPH', {
+                  Paragraph: editedParagraph
+                });
+              }}>Save</button>
+              <button onClick = {() => {
+                emitter.emit('EVENT_CANCEL_EDIT_PARAGRAPH')
+            }}>Cancel</button>
             </div>
          </div>
       </Fragment>

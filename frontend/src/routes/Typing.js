@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { path } from '../utils'
 import './Typing.scss'
 import CustomParagraphs from './CustomParagraphs';
+import {emitter} from '../utils/emitter'
 class Typing extends Component {
     constructor(props) {
         super(props);
@@ -15,51 +16,77 @@ class Typing extends Component {
             range: 100,
             timeLeft: 60,
             editable: false,
+            isStartedTime: false,
+            inputValue: ''
         }
+        this.listenToEmitter();
+    }
+
+    listenToEmitter = () => {
+        emitter.on('EVENT_CANCEL_EDIT_PARAGRAPH', () => {
+            this.setState({
+                editable: false
+            })
+            this.reloadState();
+        })
+        emitter.on('EVENT_SAVE_PARAGRAPH', async (data) => {
+            await this.setState({
+                Paragraph: data.Paragraph
+            })
+            this.reloadState();
+            emitter.emit("EVENT_CANCEL_EDIT_PARAGRAPH");
+        })
     }
 
     reloadState = () => {
         if(this.timerID) {
             clearInterval(this.timerID);
         }
+        let position = this.state.Paragraph.indexOf(' ', this.state.range);
         this.setState({
             start: 0,
             timeLeft: 60,
             iterator: 0,
-            end: this.state.Paragraph.indexOf(' ', this.state.range)
+            end: (position != -1 ? position : this.state.Paragraph.length),
+            isStartedTime: false,
+            inputValue: ''
         })
-        this.timerID = setInterval(() => {
-            if(this.state.timeLeft > 0) {
-                this.setState({
-                    timeLeft: this.state.timeLeft - 1
-                  });
-            } else {
-                this.setState({
-                    timeLeft: 60
-                })
-            }
-            
-          }, 1000);
+
     }
 
     componentDidMount = () => {
-        this.setState({
-            Paragraph: this.state.Paragraph + " ",
-        })
+        if(this.props.Paragraph) {
+            console.log('received');
+            this.setState({
+                Paragraph: this.props.Paragraph + " ",
+                editable: true
+            })
+        } 
+        
+
         this.reloadState();
     }
 
     componentDidUpdate = () => {
         if(this.state.iterator >= this.state.end && this.state.end < this.state.Paragraph.length) {
+            console.log('hello');
             let oldStart = this.state.start;
             let oldEnd = this.state.end;
             let newPosition = this.state.Paragraph.indexOf(' ', oldEnd + this.state.range);
+            console.log(newPosition, oldEnd, this.state.Paragraph.length);
             if(newPosition != -1) {
+
                 this.setState({
                     start: oldEnd, 
                     end: newPosition
                 })
-            } 
+            } else {    
+                this.reloadState();
+            }
+        } else if(this.state.iterator >= this.state.end && this.state.end >= this.state.Paragraph.length) {
+            console.log('hi');
+
+            this.reloadState();
         }
     }
 
@@ -75,6 +102,7 @@ class Typing extends Component {
     }
 
     handleOnChange = (event) => {
+        console.log(event.target.value)
         if(event.target.value.search(' ') != -1) {
             if(event.target.value.search(' ') == 0) {
                 event.target.value = '';
@@ -95,8 +123,29 @@ class Typing extends Component {
 
             event.target.value = '';
         }
+        if(!this.state.isStartedTime) {
+            console.log('timer setting')
+            this.setState({
+                isStartedTime: true
+            })
+            this.timerID = setInterval(() => {
+                if(this.state.timeLeft > 0) {
+                    this.setState({
+                        timeLeft: this.state.timeLeft - 1
+                        });
+                } else {
+                    this.setState({
+                        timeLeft: 60
+                    })
+                }
+                
+                }, 1000);
+        }
+        this.setState({
+            inputValue: event.target.value
+        })
     }
-
+    
 
     render() {
         if(this.state.editable) {
@@ -106,12 +155,12 @@ class Typing extends Component {
             <Fragment>
                 <div className='paragraph-container'>
                     {this.props.type == 'practice' && <i class="fas fa-edit" onClick ={() => {this.setState({editable: !this.state.editable})}}></i>}
-                    <p contentEditable={this.state.editable}   style={this.state.editable ? {outline: "solid 1px #fff"} : {}} onChange ={this.handleEditParagraph}><span className='finished'>{this.state.Paragraph.substring(this.state.start, this.state.iterator)}</span>{this.state.Paragraph.substring(this.state.iterator, this.state.end)}</p>
+                    <p ><span className='finished'>{this.state.Paragraph.substring(this.state.start, this.state.iterator)}</span>{this.state.Paragraph.substring(this.state.iterator, this.state.end)}</p>
                     <p></p>
                 </div>
                 <div className='typing'>
                     <div className = "typing-container">
-                        <input onChange={this.handleOnChange}/>
+                        <input value ={this.state.inputValue} onChange={this.handleOnChange}/>
                         <button>{this.getTimer()}</button>
                         <button className ="reload" onClick ={this.reloadState}><i class="fas fa-sync-alt"></i></button>
                     </div>

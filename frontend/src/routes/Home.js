@@ -8,11 +8,12 @@ import Practice from './Practice';
 import Test from './Test';
 import Typing from './Typing';
 import Record from './Record';
+import HomePage from './HomePage';
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentComponent: null,
+            currentComponent: <HomePage/>,
             currentActive: null,
             shouldRedirectToLogin: false,
         
@@ -58,17 +59,17 @@ class Home extends Component {
                         <ul>
                             <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
                                 <span>Typing</span>
-                                <i class="fas fa-chevron-right"></i></li>
+                                <i className="fas fa-chevron-right"></i></li>
                             <li onClick={() => this.setCurrentComponent(<Practice />, 'Practice')} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>
                                 Practice
-                                <i class="fas fa-chevron-right"></i></li>
+                                <i className="fas fa-chevron-right"></i></li>
                             <li onClick={() => this.setCurrentComponent(<Test />, 'Test')} className = {this.state.currentActive == 'Test' ? 'active' : ''}>
                                 Test
-                                <i class="fas fa-chevron-right"></i>
+                                <i className="fas fa-chevron-right"></i>
                             </li>
                             <li onClick={() => this.setCurrentComponent(<Record />, 'Record')} className = {this.state.currentActive == 'Record' ? 'active' : ''}>
                                 Record
-                                <i class="fas fa-chevron-right"></i>    
+                                <i className="fas fa-chevron-right"></i>    
                             </li>
                         </ul>
                     </div>
