@@ -50,14 +50,23 @@ class Home extends Component {
             return <Redirect to="/login" />;
         }
         return (
-            <div className = "page">
-                <div className="header">
-                    <button onClick = {() => {this.setState({shouldRedirectToLogin: true})}}>Login</button>
-                </div>
+            <div className="page">
+                <nav className="header">
+                    <div className='logo'>
+                        <div className='circle'>
+                            <div className="circle1"></div>
+                            <div className="circle2"></div>
+                            <div className="circle3"></div>
+                        </div>
+                        <p className="home">Go10ngon</p>
+                    </div>
+                    <i className="fas fa-sign-in-alt login" onClick = {() => {this.setState({shouldRedirectToLogin: true})}}></i>
+                </nav>
+
                 <div className="body-container" isOpen = {false}>
                     <div className="navigation">
                         <ul>
-                            <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
+                            <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing Test')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
                                 <span>Typing</span>
                                 <i className="fas fa-chevron-right"></i></li>
                             <li onClick={() => this.setCurrentComponent(<Practice />, 'Practice')} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>
