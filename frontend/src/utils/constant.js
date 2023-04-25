@@ -2,7 +2,10 @@ export const path = {
     HOME: '/',
     LOGIN: '/login',
     LOG_OUT: '/logout',
-    SYSTEM: '/system'
+    SYSTEM: '/system',
+    PRACTICE: '/practice',
+    TYPING: '/typing',
+    RECORD: '/record'
 };
 
 export const languages = {

@@ -1,0 +1,124 @@
+$header-height: 50px;
+$footer-height: 50px;
+$body-height: calc(100% - #{$footer-height +$header-height});
+
+.header {
+    height: $header-height;
+    background-color: #5db8c4;
+    justify-content: space-between;
+    display: flex;
+
+    .logo {
+        display: flex;
+        flex-direction: row;
+        .home {
+            color: azure;
+            margin: 0 0 0 10px;
+            padding: 0px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .circle {           
+            display: flex;
+            align-items: center;
+            * {
+                border-radius: 50%;
+                margin-left: 5px;
+                width: 22px;
+                height: 22px;
+            }
+        }
+        
+        .circle1 {
+            background-color: rgb(231, 28, 28);
+        }
+        
+        .circle2 {
+            background-color: rgb(0, 255, 153);
+        }
+        
+        .circle3 {
+            background-color: yellow;
+        }    
+    }
+
+    .login {
+        font-size: x-large;
+        display: flex;
+        align-items: center;
+        padding-right: 15px;
+    }
+}
+
+.page {
+    height: 100vh;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: row;
+    height: $body-height;
+    .navigation {
+        ul {
+            height: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            li {
+                display: inline-block;
+                color: white;
+                text-transform: uppercase;
+                border-bottom: 1px solid #a2a2a2;
+                padding: 20px 10px;
+                width: 150px;
+                &:hover{
+                    cursor: pointer;
+                    background-color: #a2a2a2;
+                }
+                i {
+                    float: right;
+                    font-size: 20px;
+                }
+            }
+            
+            li.active {
+                background-color: #a2a2a2;
+            }
+        }
+    }
+    .body-content {
+        // flex: 70%;
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+    }
+}
+
+
+.footer {
+    height: $footer-height;
+    width: 100vw;
+    background-color: #ccc;
+    border-top: 2px solid #000;
+    ul {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 20px;
+        line-height: $footer-height;
+        font-size: 20px;
+        li {
+            &:hover {
+                cursor: pointer;
+            
+            }
+        }
+    }
+}
+

@@ -21,6 +21,10 @@ class Login extends Component {
         }
     }
 
+    componentDidUpdate = () => {
+        console.log('hello');
+    }
+
     handleOnChangeUsername = (event) => {
         this.setState({
             username: event.target.value
