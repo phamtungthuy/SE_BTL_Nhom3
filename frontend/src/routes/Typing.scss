@@ -6,13 +6,39 @@
         background-color: #000;
         margin: 10px auto;
         border-radius: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        font-size: 20px;
         text-align: center;
-        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .words {
+            overflow-y: hidden;
+            .word-row {
+                margin: 0 auto;
+                display: flex;
+                width: 90%;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                font-size: 20px;
+                height: 80px;
+                position: relative;
+                top: 0;
+                span {
+                    color: #fff;
+                    padding: 5px;
+                    &.finished-word{
+                        color: #a19b9b;
+                    }
+                    &.wrong{
+                        color: #bd1414;
+                    }
+                    &.current-word {
+                        background-color: #a19b9b;
+                    }
+                }
+            }
+            
+        }
         p {
             color: white;
             .finished {
