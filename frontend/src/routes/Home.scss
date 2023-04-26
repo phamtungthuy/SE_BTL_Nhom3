@@ -1,10 +1,9 @@
-$header-height: 50px;
-$footer-height: 50px;
-$body-height: calc(100% - #{$footer-height +$header-height});
+$header-height: 60px;
+$body-height: calc(100% - #{$header-height});
 
 .header {
     height: $header-height;
-    background-color: #5db8c4;
+    background-color: #62cf63;
     justify-content: space-between;
     display: flex;
 
@@ -18,11 +17,14 @@ $body-height: calc(100% - #{$footer-height +$header-height});
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 35px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
         }
 
         .circle {           
             display: flex;
             align-items: center;
+            padding-top: 5px;
             * {
                 border-radius: 50%;
                 margin-left: 5px;
@@ -66,28 +68,37 @@ $body-height: calc(100% - #{$footer-height +$header-height});
             list-style: none;
             padding: 0;
             margin: 0;
-            background-color: black;
+            background-color: rgb(202, 193, 193);
             display: flex;
             flex-direction: column;
             li {
                 display: inline-block;
                 color: white;
                 text-transform: uppercase;
-                border-bottom: 1px solid #a2a2a2;
+                border-bottom: 1px solid #908989;
                 padding: 20px 10px;
-                width: 150px;
+                width: 200px;
                 &:hover{
                     cursor: pointer;
-                    background-color: #a2a2a2;
+                    background-color: #97a0dc;
                 }
                 i {
-                    float: right;
+                    float: left;
                     font-size: 20px;
+                }
+
+                .aboutus {
+                    display: flex;
+                    
+                }
+
+                .help {
+
                 }
             }
             
             li.active {
-                background-color: #a2a2a2;
+                background-color: #bdc9e3;
             }
         }
     }
@@ -96,29 +107,6 @@ $body-height: calc(100% - #{$footer-height +$header-height});
         height: 100%;
         width: 100%;
         overflow-y: auto;
-    }
-}
-
-
-.footer {
-    height: $footer-height;
-    width: 100vw;
-    background-color: #ccc;
-    border-top: 2px solid #000;
-    ul {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        gap: 20px;
-        line-height: $footer-height;
-        font-size: 20px;
-        li {
-            &:hover {
-                cursor: pointer;
-            
-            }
-        }
     }
 }
 
