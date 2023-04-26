@@ -21,10 +21,9 @@ class Typing extends Component {
             currentWidth: 0
         }
         this.listenToEmitter();
-        this.spanRef = React.createRef();
+        this.spanRef = [];
         this.divRef = React.createRef();
-        this.nextLine = true;
-        this.wrongWords = []
+        this.wrongWords = [];
     }
 
     listenToEmitter = () => {
@@ -57,11 +56,10 @@ class Typing extends Component {
             top: 0
         })
         this.wrongWords = [];
-        this.nextLine = true;
 
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
         if(this.props.Paragraph) {
             this.setState({
                 Paragraph: this.props.Paragraph + " ",
@@ -69,20 +67,30 @@ class Typing extends Component {
             })
         }
         
-
-        this.setState({
+        await this.setState({
             words: this.state.Paragraph.split(" ")
         })
-        console.log(this.state.Paragraph.split(" "))
+        let length = this.state.words.length;
+        for (let i = 0; i < length; i++) {
+            this.spanRef.push(React.createRef());
+        }
         this.reloadState();
     }
 
     componentDidUpdate = () => {
         const div = this.divRef.current;
         if(div && div.offsetWidth !== this.state.currentWidth) {
-            console.log('yes');
+            let line = -1;
+            for(let i = 0; i < this.state.currentWord - 1; i++) {
+                let span = this.spanRef[i].current;
+                if(span && span.offsetLeft == 0) {
+                    ++line;
+                }
+            }
+            console.log(line);
             this.setState({
-                currentWidth: div.offsetWidth
+                currentWidth: div.offsetWidth,
+                top: -40 * (line)
             })
         }
     }
@@ -98,7 +106,7 @@ class Typing extends Component {
         return (minute + ":" + second);
     }
 
-    handleOnChange = (event) => {
+    handleOnChange = async (event) => {
         
         if(event.target.value.search(' ') != -1) {
             if(event.target.value.search(' ') == 0) {
@@ -118,24 +126,20 @@ class Typing extends Component {
                 oldCurrentWord %= words.length;
                 this.reloadState();
             }
-            this.setState({
-                currentWord: oldCurrentWord
+           this.setState({
+                currentWord: oldCurrentWord,
+                inputValue: ''
             })
-
-            const span = this.spanRef.current;
-            const div = this.divRef.current;
-            if(span && div) {
-                if(div.offsetWidth - (span.offsetLeft + span.offsetWidth) < 150) {
-                    if(this.nextLine) {
-                        this.setState({
-                            top: this.state.top - 40
-                        })
-                    }
-                    this.nextLine = !this.nextLine
+            const span = this.spanRef[this.state.currentWord + 1].current;
+            if(span) {
+                if(span.offsetLeft == 0) {
+                    this.setState({
+                        top: this.state.top - 40
+                    })
                 }
 
             }
-
+            return;
 
         }
         if(!this.state.isStartedTime) {
@@ -173,10 +177,9 @@ class Typing extends Component {
                     <div className="words" ref={this.divRef}>
                         <div className="word-row"  style={{ position: 'relative', top: `${this.state.top}px` }}>
                         {this.state.words.map((word, index) => {
-                            if(index < this.state.currentWord - 1) return <span className={this.wrongWords.includes(index) ? 'wrong' : 'finished-word' }>{word}</span>
-                            else if(index == this.state.currentWord - 1) return <span className={this.wrongWords.includes(index) ? 'wrong' : 'finished-word'} ref={this.spanRef}>{word}</span>
-                            else if(index == this.state.currentWord) return <span className='current-word'>{word}</span>
-                            return <span>{word}</span>
+                            if(index < this.state.currentWord) return <span className={this.wrongWords.includes(index) ? 'wrong' : 'finished-word'} ref={this.spanRef[index]}>{word}</span>
+                            else if(index == this.state.currentWord) return <span className='current-word' ref = {this.spanRef[index]}>{word}</span>
+                            return <span ref={this.spanRef[index]}>{word}</span>
                         })}
                         </div>
                         
