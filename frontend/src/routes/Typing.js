@@ -50,7 +50,7 @@ class Typing extends Component {
         let position = this.state.Paragraph.indexOf(' ', this.state.range);
         this.setState({
             currentWord: 0,
-            timeLeft: 60,
+            timeLeft: 5,
             isStartedTime: false,
             inputValue: '',
             oldPosition: 0,
