@@ -84,8 +84,6 @@ class Home extends Component {
                                 <span><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i>Facebook</a></span>
                                 <span><i class="fas fa-book"></i>Policy</span>
                             </li>
-                            <li className="aboutus" onClick={() => this.setCurrentComponent()}>About us</li>
-                            <li className="help" onClick={() => this.setCurrentComponent()}>Help</li>
                         </ul>
                     </div>
                     <div className="body-content">
