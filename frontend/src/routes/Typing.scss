@@ -21,7 +21,7 @@
                 font-family: monospace;
                 font-size: 30px;
                 font-weight: 600;
-                height: 170px;
+                height: 110px;
                 position: relative;
                 top: 0;
                 span {
@@ -60,9 +60,10 @@
 
     }
     
-    .typing {
+    .input {
+        width: 100%;
         text-align: center;
-        .typing-container {
+        .input-container {
             width: 70%;
             margin: 0 auto;
             background-color: #f0eeee;

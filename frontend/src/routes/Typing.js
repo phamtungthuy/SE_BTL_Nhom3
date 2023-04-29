@@ -5,6 +5,7 @@ import { path } from '../utils'
 import './Typing.scss'
 import CustomParagraphs from './CustomParagraphs';
 import {emitter} from '../utils/emitter'
+import Result from './Result';
 class Typing extends Component {
     constructor(props) {
         super(props);
@@ -90,7 +91,7 @@ class Typing extends Component {
             console.log(line);
             this.setState({
                 currentWidth: div.offsetWidth,
-                top: -40 * (line)
+                top: -55 * (line)
             })
         }
     }
@@ -134,7 +135,7 @@ class Typing extends Component {
             if(span) {
                 if(span.offsetLeft == 0) {
                     this.setState({
-                        top: this.state.top - 40
+                        top: this.state.top - 55
                     })
                 }
 
@@ -151,10 +152,6 @@ class Typing extends Component {
                     this.setState({
                         timeLeft: this.state.timeLeft - 1
                         });
-                } else {
-                    this.setState({
-                        timeLeft: 60
-                    })
                 }
                 
                 }, 1000);
@@ -169,30 +166,37 @@ class Typing extends Component {
         if(this.state.editable) {
             return <CustomParagraphs paragraph ={this.state.Paragraph}/>
         }
+        if(this.state.timeLeft <= 0) {
+            return (<Result 
+                reloadState={this.reloadState}
+            />);
+        }
         return  (
             <Fragment>
-                <div className='paragraph-container'>
-                    {this.props.type == 'practice' && <i className="fas fa-edit" onClick ={() => {this.setState({editable: !this.state.editable})}}></i>}
-                    {/* <p ><span className='finished'>{this.state.Paragraph.substring(this.state.start, this.state.iterator)}</span>{this.state.Paragraph.substring(this.state.iterator, this.state.end)}</p> */}
-                    <div className="words" ref={this.divRef}>
-                        <div className="word-row"  style={{ position: 'relative', top: `${this.state.top}px` }}>
-                        {this.state.words.map((word, index) => {
-                            if(index < this.state.currentWord) return <span className={this.wrongWords.includes(index) ? 'wrong' : 'finished-word'} ref={this.spanRef[index]}>{word}</span>
-                            else if(index == this.state.currentWord) return <span className='current-word' ref = {this.spanRef[index]}>{word}</span>
-                            return <span ref={this.spanRef[index]}>{word}</span>
-                        })}
+                <div className="typing-container">
+                    <div className='paragraph-container'>
+                        {this.props.type == 'practice' && <i className="fas fa-edit" onClick ={() => {this.setState({editable: !this.state.editable})}}></i>}
+                        <div className="words" ref={this.divRef}>
+                            <div className="word-row"  style={{ position: 'relative', top: `${this.state.top}px` }}>
+                            {this.state.words.map((word, index) => {
+                                if(index < this.state.currentWord) return <span className={this.wrongWords.includes(index) ? 'wrong' : 'finished-word'} ref={this.spanRef[index]}>{word}</span>
+                                else if(index == this.state.currentWord) return <span className='current-word' ref = {this.spanRef[index]}>{word}</span>
+                                return <span ref={this.spanRef[index]}>{word}</span>
+                            })}
+                            </div>
+                            
                         </div>
                         
                     </div>
-                    
-                </div>
-                <div className='typing'>
-                    <div className = "typing-container">
-                        <input value ={this.state.inputValue} onChange={this.handleOnChange}/>
-                        <button>{this.getTimer()}</button>
-                        <button className ="reload" onClick ={this.reloadState}><i class="fas fa-sync-alt"></i></button>
+                    <div className='input'>
+                        <div className = "input-container">
+                            <input value ={this.state.inputValue} onChange={this.handleOnChange}/>
+                            <button>{this.getTimer()}</button>
+                            <button className ="reload" onClick ={this.reloadState}><i class="fas fa-sync-alt"></i></button>
+                        </div>
                     </div>
                 </div>
+                
             </Fragment>
         );
     }

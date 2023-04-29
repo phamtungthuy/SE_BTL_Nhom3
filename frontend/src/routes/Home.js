@@ -15,8 +15,7 @@ class Home extends Component {
         super(props);
         this.state = {
             currentComponent: <HomePage/>,
-            currentActive: null,
-            shouldRedirectToLogin: false,
+            currentActive: null
         
         };
     }
@@ -28,27 +27,9 @@ class Home extends Component {
         })
     }
 
-    componentDidMount() {
-        this.unlisten = this.props.history.listen((location, action) => {
-          if (action === 'POP') {
-            window.location.reload();
-            console.log('hello');
-          }
-        });
-      }
-      
-      componentWillUnmount() {
-        window.history.back();
-      }
-      
 
     render() {
-        if(this.state.shouldRedirectToLogin) {
-            this.setState({
-                shouldRedirectToLogin: false
-            })
-            return <Redirect to="/login" />;
-        }
+
         return (
             <div className="page">
                 <nav className="header">
@@ -60,13 +41,14 @@ class Home extends Component {
                         </div>
                         <p className="home">Go10ngon</p>
                     </div>
-                    <i class="fas fa-user-circle login" onClick = {() => {this.setState({shouldRedirectToLogin: true})}}></i>
+                    <a href='/login'><i class="fas fa-user-circle login"></i></a>
+                    
                 </nav>
 
                 <div className="body-container" isOpen = {false}>
                     <div className="navigation">
                         <ul>
-                            <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing Test')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
+                            <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
                                 <h4>TYPING</h4>
                             </li>
                             <li onClick={() => this.setCurrentComponent(<Test />, 'Test')} className = {this.state.currentActive == 'Test' ? 'active' : ''}>

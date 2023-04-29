@@ -1,0 +1,13 @@
+#auswertung-result{
+    text-align: center;
+    a{
+        color: #000;
+    }
+    i:hover {
+        color: #000;
+        cursor: pointer;
+        &:hover{
+            color: rgb(77, 77, 231);
+        }
+    }
+}
