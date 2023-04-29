@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Typing, { foreignKey: 'user_id' });
+      // User.hasMany(models.Typing, { foreignKey: 'user_id' });
     }
   }
   User.init({
@@ -42,7 +42,15 @@ module.exports = (sequelize, DataTypes) => {
     gender: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
-    }
+    },
+    createdAt: {
+      field: 'created_at',
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+        field: 'updated_at',
+        type: DataTypes.DATE,
+    },
   }, {
     sequelize,
     modelName: 'User',

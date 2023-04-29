@@ -8,14 +8,15 @@ let getParagraph = (req, res) => {
             // is_test: req.params.is_test
         }
     })
-    .then(data => {res.status(200).send(data)})
+    .then(data => {
+        res.status(200).send(data)
+    })
     .catch(err => {res.status(500).send({message : err.message})})
 }
 
 let addParagrpah = (req, res) => {
 
 }
-
 
 
 module.exports = {
