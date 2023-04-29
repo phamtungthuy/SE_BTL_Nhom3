@@ -7,7 +7,6 @@ class HomePage extends Component {
     render() {
         return (
             <div className="homepage">
-                <h1>Welcome to typing Website</h1>
                 <div className="typing-image"></div>
             </div>
             

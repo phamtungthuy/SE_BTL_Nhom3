@@ -3,7 +3,7 @@
     .paragraph-container {
         width: 70%;
         height: 500px;
-        background-color: #000;
+        background-color: #826f6f3b;
         margin: 10px auto;
         border-radius: 10px;
         text-align: center;
@@ -18,12 +18,14 @@
                 width: 90%;
                 align-items: center;
                 flex-wrap: wrap;
-                font-size: 20px;
-                height: 80px;
+                font-family: monospace;
+                font-size: 30px;
+                font-weight: 600;
+                height: 170px;
                 position: relative;
                 top: 0;
                 span {
-                    color: #fff;
+                    color: #252424;
                     padding: 5px;
                     &.finished-word{
                         color: #a19b9b;

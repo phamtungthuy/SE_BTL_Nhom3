@@ -9,6 +9,7 @@ import Test from './Test';
 import Typing from './Typing';
 import Record from './Record';
 import HomePage from './HomePage';
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -59,30 +60,33 @@ class Home extends Component {
                         </div>
                         <p className="home">Go10ngon</p>
                     </div>
-                    <i className="fas fa-sign-in-alt login" onClick = {() => {this.setState({shouldRedirectToLogin: true})}}></i>
+                    <i class="fas fa-user-circle login" onClick = {() => {this.setState({shouldRedirectToLogin: true})}}></i>
                 </nav>
 
                 <div className="body-container" isOpen = {false}>
                     <div className="navigation">
                         <ul>
                             <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing Test')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
-                                Typing
-                                <i className="far fa-keyboard"></i>
-                            </li>
-                            <li onClick={() => this.setCurrentComponent(<Practice />, 'Practice')} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>
-                                Practice
-                                <i className="fas fa-paragraph"></i>
+                                <h4>TYPING</h4>
                             </li>
                             <li onClick={() => this.setCurrentComponent(<Test />, 'Test')} className = {this.state.currentActive == 'Test' ? 'active' : ''}>
-                                Test
-                                <i className="fal fa-typewriter"></i>
+                                <h4>TEST</h4>
+                            </li>
+                            <li onClick={() => this.setCurrentComponent(<Practice />, 'Practice')} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>
+                                <h4>PRACTICE</h4>
                             </li>
                             <li onClick={() => this.setCurrentComponent(<Record />, 'Record')} className = {this.state.currentActive == 'Record' ? 'active' : ''}>
-                                Record
-                                <i className="far fa-clipboard-user"></i>   
+                                <h4>RECORD</h4>
                             </li>
-                            <li className="aboutus" onClick={() => this.setCurrentComponent()}>About us</li>
-                            <li className="help" onClick={() => this.setCurrentComponent()}>Help</li>
+                            <li className="footer">
+                                About us
+                                <br/>
+                                Help
+                                <br/>
+                                Discord
+                                <br/>
+                                Policy
+                            </li>
                         </ul>
                     </div>
                     <div className="body-content">
