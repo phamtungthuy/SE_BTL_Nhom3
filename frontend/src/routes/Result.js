@@ -54,6 +54,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        // increaseCorrectWords: state.wpm.increaseCorrectWords,
+        // increaseWrongWords: state.wpm.increaseWrongWords,
+        // increaseTotalWords: state.wpm.increaseTotalWords,
+
     };
 };
 

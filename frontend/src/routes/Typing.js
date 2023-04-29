@@ -172,32 +172,31 @@ class Typing extends Component {
             />);
         }
         return  (
-            <Fragment>
-                <div className="typing-container">
-                    <div className='paragraph-container'>
-                        {this.props.type == 'practice' && <i className="fas fa-edit" onClick ={() => {this.setState({editable: !this.state.editable})}}></i>}
-                        <div className="words" ref={this.divRef}>
-                            <div className="word-row"  style={{ position: 'relative', top: `${this.state.top}px` }}>
-                            {this.state.words.map((word, index) => {
-                                if(index < this.state.currentWord) return <span className={this.wrongWords.includes(index) ? 'wrong' : 'finished-word'} ref={this.spanRef[index]}>{word}</span>
-                                else if(index == this.state.currentWord) return <span className='current-word' ref = {this.spanRef[index]}>{word}</span>
-                                return <span ref={this.spanRef[index]}>{word}</span>
-                            })}
-                            </div>
-                            
+
+
+            <div className="typing-container">
+                <div className='paragraph-container'>
+                    {this.props.type == 'practice' && <i className="fas fa-edit" onClick ={() => {this.setState({editable: !this.state.editable})}}></i>}
+                    <div className="words" ref={this.divRef}>
+                        <div className="word-row"  style={{ position: 'relative', top: `${this.state.top}px` }}>
+                        {this.state.words.map((word, index) => {
+                            if(index < this.state.currentWord) return <span className={this.wrongWords.includes(index) ? 'wrong' : 'finished-word'} ref={this.spanRef[index]}>{word}</span>
+                            else if(index == this.state.currentWord) return <span className='current-word' ref = {this.spanRef[index]}>{word}</span>
+                            return <span ref={this.spanRef[index]}>{word}</span>
+                        })}
                         </div>
                         
                     </div>
-                    <div className='input'>
-                        <div className = "input-container">
-                            <input value ={this.state.inputValue} onChange={this.handleOnChange}/>
-                            <button>{this.getTimer()}</button>
-                            <button className ="reload" onClick ={this.reloadState}><i class="fas fa-sync-alt"></i></button>
-                        </div>
+                    
+                </div>
+                <div className='input'>
+                    <div className = "input-container">
+                        <input value ={this.state.inputValue} onChange={this.handleOnChange}/>
+                        <button>{this.getTimer()}</button>
+                        <button className ="reload" onClick ={this.reloadState}><i class="fas fa-sync-alt"></i></button>
                     </div>
                 </div>
-                
-            </Fragment>
+            </div>
         );
     }
 
