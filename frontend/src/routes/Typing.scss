@@ -5,6 +5,7 @@
         height: 300px;
         background-color: #826f6f3b;
         margin: 100px auto;
+        margin-bottom: 50px;
         border-radius: 10px;
         text-align: center;
         display: flex;
@@ -126,7 +127,7 @@
 
     .edit-bar {
         height: 10%;
-        background-color: #55b2d1;
+        background-color: #63b984;
         display: flex;
         justify-content: space-around;
         border-bottom-left-radius: 12px;
@@ -138,7 +139,7 @@
             outline: none;
             border-radius: 10px;
             border: none;
-            background-color: #e0d6d6;
+            background-color: #c6ddbb;
             &:hover {
                 opacity: 0.8;
             }

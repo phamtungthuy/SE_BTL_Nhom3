@@ -38,7 +38,7 @@ class Home extends Component {
         return (
             <div className="page">
                 <nav className="header">
-                    <div className='logo'>
+                    <div className='logo' onClick={() => this.setCurrentComponent(<HomePage />, 'HomePage')}>
                         <div className='circle'>
                             <div className="circle1"></div>
                             <div className="circle2"></div>
