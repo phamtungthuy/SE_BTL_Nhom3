@@ -5,6 +5,7 @@ import { push } from "connected-react-router";
 import * as actions from "../../store/actions";
 import { KeyCodeUtils, LanguageUtils } from "../../utils";
 
+import  {handleLogin}  from '../../services/userService';
 
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
@@ -22,7 +23,7 @@ class Login extends Component {
     }
 
     componentDidUpdate = () => {
-        console.log('hello');
+        
     }
 
     handleOnChangeUsername = (event) => {
@@ -45,9 +46,34 @@ class Login extends Component {
         })
     }
 
-    handleLogin = () => {
-        this.props.userLoginSuccess({});
-        this.props.navigate('/');
+    handleLogin = async () => {
+        this.setState({
+            errMessage: ''
+        })
+        console.log(`username: ${this.state.username}`, `password: ${this.state.password}`);
+        console.log(`all state: `, this.state);
+        try {
+            let data = await handleLogin(this.state.username, this.state.password);
+            console.log(data);
+            if(data && data.errCode !== 0) {
+                this.setState({
+                    errMessage: data.errMessage
+                })
+            } else if(data && data.errCode === 0) {
+                this.props.userLoginSuccess(data.user);
+                this.props.navigate('/');
+                console.log('Login succeeds');
+            }
+        } catch(error) {
+            console.log('2');
+            if(error.response) {
+                if(error.response.data) {
+                    this.setState({
+                        errMessage: error.response.data.errMessage
+                    })
+                }
+            }
+        }
     }
 
     render() {

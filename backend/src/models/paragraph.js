@@ -36,15 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
       allowNull: false
-    },
-    createdAt: {
-      field: 'created_at',
-      type: DataTypes.DATE,
-    },
-    updatedAt: {
-        field: 'updated_at',
-        type: DataTypes.DATE,
-    },
+    }
   }, {
     sequelize,
     modelName: 'Paragraph',

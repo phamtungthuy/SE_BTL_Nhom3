@@ -1,12 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "nghia1234567&",
+    "password": "tungthuy47",
     "database": "go10ngon",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "3308",
-    "timezone": "+7:00"
+    "port": "3306",
+    "define": {
+        "timestamps": false
+    }
   },
   "test": {
     "username": "root",
