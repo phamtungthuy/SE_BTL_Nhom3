@@ -45,6 +45,11 @@ class Login extends Component {
         })
     }
 
+    handleLogin = () => {
+        this.props.userLoginSuccess({});
+        this.props.navigate('/');
+    }
+
     render() {
 
         return (
@@ -77,7 +82,7 @@ class Login extends Component {
                             {this.state.errMessage}
                         </div>
                         <div className='col-12'>
-                            <button className='btn-login'>
+                            <button className='btn-login' onClick = {() => {this.handleLogin()}}>
                                 Login
                             </button>
                         </div>
@@ -109,8 +114,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         navigate: (path) => dispatch(push(path)),
-        adminLoginSuccess: (adminInfo) => dispatch(actions.adminLoginSuccess(adminInfo)),
-        adminLoginFail: () => dispatch(actions.adminLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
+        userLoginFail: () => dispatch(actions.userLoginFail()),
     };
 };
 

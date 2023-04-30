@@ -15,12 +15,10 @@ class Practice extends Component {
 
     render() {
         return (
-            <div>
                 <Typing 
                 type='practice'
                 Paragraph = {this.state.Paragraph}
                 />
-            </div>
         );
     }
 

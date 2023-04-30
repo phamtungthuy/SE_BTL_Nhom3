@@ -56,6 +56,20 @@ $nav-width: 160px;
         padding-right: 20px;
     }
 
+    .loggedIn-user {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        gap: 10px;
+        font-size: xx-large;
+        color: #fff;
+        justify-content: center;
+        i:hover {
+            color: #000;
+            cursor: pointer;
+        }
+    }
+
     a{
         color: #fff;
         text-decoration: none;

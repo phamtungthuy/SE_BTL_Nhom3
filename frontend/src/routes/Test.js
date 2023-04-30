@@ -7,9 +7,7 @@ class Test extends Component {
 
     render() {
         return (
-            <div>
                 <Typing />
-            </div>
         );
     }
 
