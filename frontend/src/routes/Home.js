@@ -77,13 +77,12 @@ class Home extends Component {
                                 <h4>RECORD</h4>
                             </li>
                             <li className="footer">
-                                About us
-                                <br/>
-                                Help
-                                <br/>
-                                Discord
-                                <br/>
-                                Policy
+                                <span>About us</span>
+                                <span><i class="fas fa-hands-helping"></i>Help</span>
+                                <span><a href="https://discord.com/"><i class="fab fa-discord"></i>Discord</a></span>
+                                <span><a href="https://twitter.com/"><i class="fab fa-twitter"></i>Twitter</a></span>
+                                <span><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i>Facebook</a></span>
+                                <span><i class="fas fa-book"></i>Policy</span>
                             </li>
                         </ul>
                     </div>

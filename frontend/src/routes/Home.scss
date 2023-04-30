@@ -144,6 +144,21 @@ $nav-width: 160px;
             li {
                 font-weight: 2000;
             }
+            li.footer {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                color: #000;
+                span {
+                    a {
+                        color: #000;
+    
+                        text-decoration: none;
+                    }
+                }
+            }
         }
     }
     .body-content {
