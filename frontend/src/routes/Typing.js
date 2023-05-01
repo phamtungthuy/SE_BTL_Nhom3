@@ -6,13 +6,14 @@ import './Typing.scss'
 import CustomParagraphs from './CustomParagraphs';
 import {emitter} from '../utils/emitter'
 import Result from './Result';
+import * as actions from '../store/actions/index';
 class Typing extends Component {
     constructor(props) {
         super(props);
         this.state = {
             Paragraph: "Cách hiểu thứ nhất (đoạn ý): Đoạn văn được dùng với ý nghĩa để chỉ sự phân đoạn nội dung, phân đoạn ý của văn bản. Một văn bản bao gồm nhiều đoạn văn: Đoạn mở đầu văn bản, những đoạn khai triển văn bản, đoạn kết thúc văn bản. Mỗi đoạn phải có sự hoàn chỉnh nhất định nào đó về mặt ý, về mặt nội dung. Nhưng thế nào là một nội dung, một ý hoàn chỉnh thì không có tiêu chí để xác định rõ ràng. Một văn bản, tuỳ theo người đọc cảm nhận mà phân chia ra thành các đoạn, sự phân chia có thể không thống nhất giữa những người đọc: có người chia theo ý lớn, có người chia theo ý nhỏ. Ý lớn là đoạn bài có hai hoặc ba ý nhỏ được khai triển từ ý lớn, bao gồm hai hoặc ba đoạn văn ngắn, mỗi đoạn ngắn đó là một ý nhỏ, các đoạn này hợp ý với nhau thành một ý lớn; ý nhỏ là ý được khai triển từ ý lớn, về mặt nội dung chỉ triển khai theo một phương diện, một hướng cụ thể, mỗi ý nhỏ là một đoạn.",
             currentWord: 0,
-            timeLeft: 60,
+            timeLeft: 0,
             editable: false,
             isStartedTime: false,
             inputValue: '',
@@ -25,6 +26,7 @@ class Typing extends Component {
         this.spanRef = [];
         this.divRef = React.createRef();
         this.wrongWords = [];
+        this.defaultTime = 60;
     }
 
     listenToEmitter = () => {
@@ -38,7 +40,14 @@ class Typing extends Component {
             await this.setState({
                 Paragraph: data.Paragraph
             })
-            this.reloadState();
+            await this.setState({
+                words: this.state.Paragraph.split(" ")
+            })
+            let length = this.state.words.length;
+            this.spanRef = [];
+            for (let i = 0; i < length; i++) {
+                this.spanRef.push(React.createRef());
+            }
             emitter.emit("EVENT_CANCEL_EDIT_PARAGRAPH");
         })
     }
@@ -47,10 +56,10 @@ class Typing extends Component {
         if(this.timerID) {
             clearInterval(this.timerID);
         }
-        let position = this.state.Paragraph.indexOf(' ', this.state.range);
+        this.props.reloadWPM();
         this.setState({
             currentWord: 0,
-            timeLeft: 5,
+            timeLeft: this.defaultTime,
             isStartedTime: false,
             inputValue: '',
             oldPosition: 0,
@@ -91,7 +100,7 @@ class Typing extends Component {
             console.log(line);
             this.setState({
                 currentWidth: div.offsetWidth,
-                top: -55 * (line)
+                top: -55 * (line >= 0 ? line : 0)
             })
         }
     }
@@ -117,6 +126,9 @@ class Typing extends Component {
             event.target.value = event.target.value.slice(0, -1);
             if(event.target.value !== this.state.words[this.state.currentWord]) {
                 this.wrongWords.push(this.state.currentWord);
+                this.props.increaseWrongWords();
+            } else {
+                this.props.increaseCorrectWords();
             }
             event.target.value = '';
 
@@ -168,6 +180,7 @@ class Typing extends Component {
         }
         if(this.state.timeLeft <= 0) {
             return (<Result 
+                time={this.defaultTime}
                 reloadState={this.reloadState}
             />);
         }
@@ -210,6 +223,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        increaseCorrectWords: () => dispatch(actions.increaseCorrectWords()),
+        increaseWrongWords: () => dispatch(actions.increaseWrongWords()),
+        reloadWPM: () => dispatch(actions.reloadWPM())
     };
 };
 

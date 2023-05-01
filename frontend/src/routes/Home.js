@@ -52,7 +52,7 @@ class Home extends Component {
                     
                     {this.props.isLoggedIn && (<div className="loggedIn-user">
                         <i class="fas fa-user-circle login"></i>
-                        <span>Username</span>
+                        <span>{this.props.userInfo.name}</span>
                         <i class="fas fa-sign-out-alt" onClick={this.HandleClickLogout}></i>
                     </div>)}
                 </nav>
@@ -101,7 +101,8 @@ class Home extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        userInfo: state.user.userInfo
     };
 };
 

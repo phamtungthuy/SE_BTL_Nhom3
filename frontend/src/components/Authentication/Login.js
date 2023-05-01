@@ -111,9 +111,7 @@ class Login extends Component {
                     errMessage: data.errMessage
                 })
             } else if(data && data.errCode === 0) {
-                this.setState({
-                    isSignUp: false
-                })
+                this.handleClickChangeToSignIn();
             }
         } catch(error) {
             if(error.response) {
@@ -129,14 +127,17 @@ class Login extends Component {
     handleClickChangeToSignup = () => {
         this.setState({
             errMessage: '',
-            isSignUp: true
+            isSignUp: true,
+            isShowPassword: false,
+            isShowConfirmPassword: false
         })
     }
 
     handleClickChangeToSignIn = () => {
         this.setState({
             errMessage: '',
-            isSignUp: false
+            isSignUp: false,
+            isShowPassword: false
         })
     }
 
