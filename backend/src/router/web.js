@@ -12,4 +12,6 @@ router.get('/user/:id', getUser)
 // router.post('/login', login)
 router.post('/api/login', userController.handleLogin);
 router.get('/api/get-all-users', userController.handleGetAllUsers);
+router.post('/api/create-new-user', userController.handleCreateNewUser);
+
 module.exports = router;

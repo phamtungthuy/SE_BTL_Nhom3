@@ -107,6 +107,13 @@ let hashUserPassword = (password) => {
 let createNewUser = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            if(!data.email || !data.password || !data.username) {
+                resolve({
+                    errCode: 1,
+                    errMessage: 'Missing parameters'
+                })
+                return;
+            }
             //check email is exists?
             let check = await checkUserEmail(data.email);
             if(check === true) {
@@ -119,15 +126,11 @@ let createNewUser = (data) => {
             let hashPasswordFromBcrypt = await hashUserPassword(data.password);
             await db.User.create({
                   email: data.email,
+                  name: data.username,
                   password: hashPasswordFromBcrypt,
-                  firstName: data.firstName,
-                  lastName: data.lastName,
                   address: data.address,
                   phonenumber: data.phonenumber,
-                  gender: data.gender == 1 ? true : false,
-                  image: null,
-                  roleId: data.roleId,
-                  positionId: null,
+                  gender: data.gender == 1 ? true : false
             })
             resolve({
                 errCode: 0,
