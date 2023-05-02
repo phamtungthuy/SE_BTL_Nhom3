@@ -14,6 +14,13 @@ class Test extends Component {
         }
     }
 
+    componentDidMount = () => {
+        this.setState({
+            level: '',
+            language: ''
+        })
+    }
+
     handleLevelChange = (event) => {
         this.setState({
                 level: event.target.value

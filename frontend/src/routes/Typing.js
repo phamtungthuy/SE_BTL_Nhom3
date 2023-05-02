@@ -137,24 +137,35 @@ class Typing extends Component {
             oldCurrentWord++;
             if(oldCurrentWord >= words.length) {
                 oldCurrentWord %= words.length;
-                this.reloadState();
+                this.setState({
+                    currentWord: 0,
+                    inputValue: '',
+                    top: 0,
+                    oldPosition: 0
+                })
+                this.wrongWords = [];
+            } else {
+                this.setState({
+                    currentWord: oldCurrentWord,
+                    inputValue: ''
+                })
             }
-           this.setState({
-                currentWord: oldCurrentWord,
-                inputValue: ''
-            })
-            const span = this.spanRef[this.state.currentWord + 1].current;
-            if(span) {
-                if(span.offsetLeft == 0) {
-                    this.setState({
-                        top: this.state.top - 55
-                    })
+
+            if(this.state.currentWord + 1 < this.spanRef.length) {
+                const span = this.spanRef[this.state.currentWord + 1].current;
+                if(span) {
+                    if(span.offsetLeft == 0) {
+                        this.setState({
+                            top: this.state.top - 55
+                        })
+                    }
+    
                 }
-
+                return;
+    
             }
-            return;
+            }
 
-        }
         if(!this.state.isStartedTime) {
             this.setState({
                 isStartedTime: true
