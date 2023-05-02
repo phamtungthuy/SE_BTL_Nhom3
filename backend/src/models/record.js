@@ -28,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
       defaultValue: 0
     },
+    highest_wpm: {
+      type: DataTypes.DOUBLE,
+      defaultValue: 0
+    },
     time_start: {
       type: DataTypes.TIME,
       allowNull: true

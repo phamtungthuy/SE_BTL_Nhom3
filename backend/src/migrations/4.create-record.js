@@ -17,6 +17,10 @@ module.exports = {
         type: Sequelize.DOUBLE,
         defaultValue: 0
       },
+      highest_wpm: {
+        type: Sequelize.DOUBLE,
+        defaultValue: 0
+      },
       time_start: {
         type: Sequelize.TIME,
         allowNull: true
@@ -38,6 +42,14 @@ module.exports = {
         onUpdate: 'CASCADE'
       })
     });
+
+    await queryInterface.bulkInsert('Records', [{
+      typing_id: 1,
+      total_score: 200,
+      highest_wpm: 100,
+      time_start: '10:00:00',
+      time_finish: '10:10:00'
+    }], {});
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Records');
