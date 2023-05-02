@@ -11,6 +11,7 @@ import Test from './Test';
 import Typing from './Typing';
 import Record from './Record';
 import HomePage from './HomePage';
+import AboutUs from './AboutUs';
 
 class Home extends Component {
     constructor(props) {
@@ -47,13 +48,12 @@ class Home extends Component {
                         <p className="home">Go10ngon</p>
                     </div>
                     {!this.props.isLoggedIn && (<a href='/login'>
-                        <i className="fas fa-sign-in-alt login"></i>
+                        <i className="fas fa-user-circle login"></i>
                     </a>)}
                     
                     {this.props.isLoggedIn && (<div className="loggedIn-user">
-                        <i class="fas fa-user-circle login"></i>
-                        <span>{this.props.userInfo.name}</span>
-                        <i class="fas fa-sign-out-alt" onClick={this.HandleClickLogout}></i>
+                        <span>Username</span>
+                        <i class="fas fa-user-circle login" onClick={this.HandleClickLogout}></i>
                     </div>)}
                 </nav>
 
@@ -76,13 +76,15 @@ class Home extends Component {
                             <li onClick={() => this.setCurrentComponent(<Record />, 'Record')} className = {this.state.currentActive == 'Record' ? 'active' : ''}>
                                 <h4>RECORD</h4>
                             </li>
-                            <li className="footer">
-                                <span>About us</span>
-                                <span><i class="fas fa-hands-helping"></i>Help</span>
-                                <span><a href="https://discord.com/"><i class="fab fa-discord"></i>Discord</a></span>
-                                <span><a href="https://twitter.com/"><i class="fab fa-twitter"></i>Twitter</a></span>
-                                <span><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i>Facebook</a></span>
-                                <span><i class="fas fa-book"></i>Policy</span>
+                            <li>
+                                <div className = "AboutUs" onClick={() => this.setCurrentComponent(<AboutUs />, 'About')}>
+                                    About us
+                                </div>
+                                <div className="contact">
+                                    <a href="https://discord.com/"><i class="fab fa-github"></i></a>
+                                    <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                                </div>
                             </li>
                         </ul>
                     </div>
