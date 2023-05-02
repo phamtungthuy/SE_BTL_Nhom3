@@ -9,8 +9,9 @@ class Test extends Component {
         super(props);
         this.state={
             isStarted: false,
-            level: "beginner",
-            language: 'english'
+            level: "Beginner",
+            language: 'English',
+            errMessage: ''
         }
     }
 
@@ -35,9 +36,16 @@ class Test extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // this.setState({
-        //     isStarted: true
-        // })
+        
+        if(!this.state.language || !this.state.level) {
+            this.setState({
+                errMessage: 'Language and Level must be required'
+            });
+            return;
+        }
+        this.setState({
+            isStarted: true
+        })
     }
 
     render() {
@@ -53,19 +61,20 @@ class Test extends Component {
                         <label><b>Level:</b></label>
                         <select value={this.state.level} onChange={this.handleLevelChange}>
                             <option value="">--Select level--</option>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
                         </select>
                     </div>
                     <div className="language">
                         <label ><b>Language:</b></label>
-                        <select value={this.state.level} onChange={this.handleLevelChange}>
+                        <select value={this.state.language} onChange={this.handleLanguageChange}>
                             <option value="">--Select level--</option>
-                            <option value="english">English</option>
-                            <option value="vietnamese">Vietnamese</option>
+                            <option value="English">English</option>
+                            <option value="Vietnamese">Vietnamese</option>
                         </select>
                     </div>
+                    {this.state.errMessage}
                     <button type="submit" className='submit-button'>Start</button>
                 </form>
                 </div>
@@ -74,7 +83,9 @@ class Test extends Component {
 
         return (
                 <Typing
-
+                    type='test'
+                    language={this.state.language}
+                    level={this.state.level}
                 />
         );
     }

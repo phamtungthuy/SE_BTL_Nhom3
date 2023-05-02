@@ -7,6 +7,7 @@ import CustomParagraphs from './CustomParagraphs';
 import {emitter} from '../utils/emitter'
 import Result from './Result';
 import * as actions from '../store/actions/index';
+import {getParagraphs, getTestParagraphs} from '../services/otherService';
 class Typing extends Component {
     constructor(props) {
         super(props);
@@ -27,6 +28,7 @@ class Typing extends Component {
         this.divRef = React.createRef();
         this.wrongWords = [];
         this.defaultTime = 60;
+        this.paragraphs = [];
     }
 
     listenToEmitter = () => {
@@ -34,14 +36,26 @@ class Typing extends Component {
             this.setState({
                 editable: false
             })
-            this.reloadState();
+            if(this.timerID) {
+                clearInterval(this.timerID);
+            }
+            this.wrongWords = []
+            this.props.reloadWPM();
+            this.setState({
+                currentWord: 0,
+                timeLeft: this.defaultTime,
+                isStartedTime: false,
+                inputValue: '',
+                oldPosition: 0,
+                top: 0
+            });
         })
         emitter.on('EVENT_SAVE_PARAGRAPH', async (data) => {
             await this.setState({
                 Paragraph: data.Paragraph
             })
             await this.setState({
-                words: this.state.Paragraph.split(" ")
+                words: data.Paragraph.split(" ")
             })
             let length = this.state.words.length;
             this.spanRef = [];
@@ -52,39 +66,48 @@ class Typing extends Component {
         })
     }
 
-    reloadState = () => {
+    reloadState = async () => {
         if(this.timerID) {
             clearInterval(this.timerID);
         }
         this.props.reloadWPM();
-        this.setState({
+        let currentParagraph = this.paragraphs[Math.floor(Math.random() * this.paragraphs.length)];
+        await this.setState({
             currentWord: 0,
             timeLeft: this.defaultTime,
             isStartedTime: false,
             inputValue: '',
             oldPosition: 0,
-            top: 0
+            top: 0,
+            Paragraph: currentParagraph,
+
         })
         this.wrongWords = [];
-
-    }
-
-    componentDidMount = async () => {
-        if(this.props.Paragraph) {
-            this.setState({
-                Paragraph: this.props.Paragraph + " ",
-                editable: true
-            })
-        }
-        
         await this.setState({
-            words: this.state.Paragraph.split(" ")
+            words: currentParagraph.split(" ")
         })
         let length = this.state.words.length;
         for (let i = 0; i < length; i++) {
             this.spanRef.push(React.createRef());
         }
+    }
+
+    componentDidMount = async () => {
+        let object;
+        if(this.props.type == 'practice') {
+            this.setState({
+                editable: true
+            })
+        } 
+        if(this.props.type == 'test') {
+            object = await getTestParagraphs(this.props.language, this.props.level);
+        } else {
+            object = await getParagraphs();
+        }
+        console.log(object);
+            this.paragraphs = object.paragraphs.map(paragraph => paragraph.content);
         this.reloadState();
+        
     }
 
     componentDidUpdate = () => {
