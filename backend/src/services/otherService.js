@@ -44,19 +44,20 @@ let getParagraphsExceptTest = async (language, difficulty) => {
     })
 }
 
-let getTestParagraphs = async (language, difficulty) => {
+let getTestParagraphs =  (language, level) => {
     return new Promise(async(resolve, reject) => {
         try{
-            if(!language || !difficulty) {
+            if(!language || !level) {
                 resolve({
                     errCode: 1,
-                    errMessage: 'language or difficulty is required'
+                    errMessage: 'language or level is required'
                 })
+                return;
             }
             let  paragraphs = await db.Paragraph.findAll({
                where: {
                 language,
-                difficulty
+                difficulty: level
                }
             });
             console.log(paragraphs);

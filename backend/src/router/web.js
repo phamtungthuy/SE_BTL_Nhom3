@@ -9,7 +9,7 @@ let router = express.Router();
 // router.use('/auth', loginVerify)
 router.get('/', homeController.getHomePage);
 router.get('/api/get-paragraphs', paragraphController.getParagraphs);
-router.get('/api/get-test-paragraphs', paragraphController.getTestParagraphs);
+router.post('/api/get-test-paragraphs', paragraphController.getTestParagraphs);
 router.get('/user/:id', getUser)
 // router.post('/login', login)
 router.post('/api/login', userController.handleLogin);
