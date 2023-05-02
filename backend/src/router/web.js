@@ -1,6 +1,6 @@
 import express from "express";
 import homeController from '../controllers/homeController';
-import { getParagraph } from "../controllers/paragraphController";
+import paragraphController from "../controllers/paragraphController";
 import { getUser, login } from "../controllers/userController";
 import userController from '../controllers/userController_new';
 import recordController from '../controllers/recordController';
@@ -8,7 +8,8 @@ let router = express.Router();
 
 // router.use('/auth', loginVerify)
 router.get('/', homeController.getHomePage);
-router.get('/getparagraph/:id', getParagraph)
+router.get('/api/get-paragraphs', paragraphController.getParagraphs);
+router.get('/api/get-test-paragraphs', paragraphController.getTestParagraphs);
 router.get('/user/:id', getUser)
 // router.post('/login', login)
 router.post('/api/login', userController.handleLogin);

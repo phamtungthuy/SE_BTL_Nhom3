@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate:up": "npx sequelize-cli db:migrate",
     "migrate:undo": "npx sequelize-cli db:migrate:undo",
-    "createDB": "npx sequelize-cli db:migrate"
+    "createDB": "npx sequelize-cli db:migrate",
+    "insertDB": "npx sequelize-cli db:seed:all"
   },
   "author": "",
   "license": "ISC",

@@ -35,21 +35,7 @@ module.exports = {
       }
     });
 
-    await queryInterface.bulkInsert('Users', [{
-      email: 'admin@admin.com',
-      name: 'admin',
-      password: 'password',
-      address: 'Viet Nam',
-      phoneNumber: 'xxxxxxxxxxxx',
-      gender: false
-    }, {
-      email: 'user@user.com',
-      name: 'user',
-      password: 'password',
-      address: 'Viet Nam',
-      phoneNumber: 'xxxxxxxxxxxx',
-      gender: true
-    }], {});
+    
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Users');
