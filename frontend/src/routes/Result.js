@@ -25,18 +25,18 @@ class Result extends Component {
     }
 
     componentDidMount = async () => {
-        console.log('result did mount');
-        if(this.props.type == 'test') {
-           let object = {
-            userId: this.props.userId,
-            paragraphId: this.props.paragraphId,
-            wpm: Math.floor(this.props.correctWords * 60 / defaultTime),
-            score: 100,
-            accuracy: Math.round((this.props.totalWords ? this.props.correctWords / this.props.totalWords * 100 : 0) * 100) / 100
-        }
-        console.log(object)
-            let message = await updateRecords(object);
-            console.log(message);
+        if(this.props.type === 'test') {
+                console.log(this.props.type);
+                    let object = {
+                        userId: this.props.userInfo.id,
+                        paragraphId: this.props.paragraphId,
+                        wpm: Math.floor(this.props.correctWords * 60 / defaultTime),
+                        score: 100,
+                        accuracy: Math.round((this.props.totalWords ? this.props.correctWords / this.props.totalWords * 100 : 0) * 100) / 100
+                    }
+                    console.log(object)
+                        let message = await updateRecords(object);
+                        console.log(message);
         }
     }
 
@@ -67,7 +67,7 @@ const mapStateToProps = state => {
         wrongWords: state.wpm.wrongWords,
         correctWords: state.wpm.correctWords,
         totalWords: state.wpm.totalWords,
-        userId: state.user.userInfo.id,
+        userInfo: state.user.userInfo,
         paragraphId: state.paragraph.currentParagraphId
     };
 };
