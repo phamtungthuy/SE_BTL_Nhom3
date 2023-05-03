@@ -1,66 +1,126 @@
-.homepage{
-    display: flex;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Cabin:ital,wght@1,600&family=Poppins&display=swap');
+
+/* ============ Hero ============ */
+
+#hero,#features{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 30px;
+  margin: 30px 30px 20px 30px;
+  padding: 0px;
+  height: max-content;
+}
+
+#hero{
+  width: 80%;
+  margin: 30px auto;
+}
+
+.left-section,.right-section {
+  padding: 4vw;
+  width: 30vw;
+  margin: auto;
+}
+
+.left-section h1{
+  font-size: xx-large;
+  color: #0072ff;
+  font-weight: bolder;
+}
+
+.subtitle{
+  padding-block: 10px;
+  font-weight: 400;
+  font-size: medium;
+}
+
+.right-section img{
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: contain;
+}
+
+#features{
+  justify-content: space-around;
+  text-align: center;
+  padding-block: 20px;
+  margin-top: 30px;
+}
+.feature{
+  width: 25vw;
+}
+.feature img{
+  height: 96px;
+  width: 96px;
+}
+.feature p{
+  padding: 5px;
+}
+
+/* ============ Media Queries ============ */
+
+@media screen and (max-width: 524px) {
+  .navigation{
+    display: none;
+    position: absolute;
+    background-color: #0072ff;
+    top: 62px;
+    left: 0;
+    width: 100%;
+  }
+  ul.main-menu{
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    .homepage-heading {
-        width: 70%;
-        padding: 20px;
-        margin: 0 auto;
-        text-align: center;
-        background-color: #f8c07e;
-        h1 {
-            font-size: 40px;
-            font-weight: 700;
-            color: #904000;
-        }
-    }
-    #centerConsoleWrap{
-        position: relative;
-        display: flex;
-        .col-1-2 {
-            .square {
-                // border: 1px solid #f0eeee;
-                border-radius: 20px;
-                padding: 20px;
-                font-size: 20px;
-                .numbered {
-                    text-align: center;
-                    top: 0.4em;
-                    left: 0.4em;
-                    width: 4.5em;
-                    margin-right: 8px;
-                    padding: 13px 0;
-                    font-size: 2.2em;
-                    font-weight: 700;
-                    color: #fff;
-                    background: #216e8a;
-                    border-radius: 50%;
-                    line-height: 1.7em;
-                    border: 4px solid #002742;
-                    margin: 10px;
-                }
-                h2 {
-                    color: #094e63;
-                    font-size: 30px;
-                }
-                .imgCaption {
-                    text-align: center;
-                    font-weight: 700;
-                }
-                h3 {
-                    text-align: left;
-                    margin-left: 12px;
-                    font-size: 1.3em;
-                }
-                h2, h3 {
-                    font-weight: 700;
-                }
-            }
-            .plug{
-                height: 400px;
-            }
-        }
-    }
+  }
+  .brand{
+    flex-grow: 1;
+  }
+  .mobile-nav{
+    display: block;
+    font-size: 25px;
+  }
+}
+
+@media screen and (min-width: 525px) {
+  .navigation {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  .nav-item{
+    display: inline-flex;
+  }
+  .navigation{
+    margin: auto;
+  }
+  .brand-name{
+    margin-bottom: 10px;
+  }
+  /* footer{
+    font-size: 12px;
+  } */
+}
+
+@media screen and (max-width: 768px) {
+  .left-section,.right-section{
+    width: 60vw;
+  }
+  .feature{
+    width: 60vw;
+    margin-block-end: 10px;
+  }
+  .navbar{
+    padding: 15px 20px;
+  }
+  #hero,#features{
+    margin: 0 20px 10px 20px;
+  }
 }
