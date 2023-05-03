@@ -8,6 +8,25 @@ let handleGetAllRecords = async (req, res) => {
     })
 };
 
+let handleUpdateRecords = async (req, res) => {
+    console.log( req.body.userId,
+        req.body.paragraphId,
+        req.body.score,
+        req.body.wpm,
+        req.body.accuracy)
+    let object = await otherServices.updateRecords(
+        req.body.userId,
+        req.body.paragraphId,
+        req.body.score,
+        req.body.wpm,
+        req.body.accuracy
+    );
+    return res.status(200).json({
+        object
+    })
+}
+
 module.exports = {
-    handleGetAllRecords
+    handleGetAllRecords,
+    handleUpdateRecords
 }

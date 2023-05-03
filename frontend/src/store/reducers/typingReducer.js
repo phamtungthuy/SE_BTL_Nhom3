@@ -1,5 +1,5 @@
 import actionTypes from '../actions/actionTypes';
-export const defaultTime = 30;
+export const defaultTime = 10;
 const initialState = {
     currentWord: 0,
     timeLeft: defaultTime,

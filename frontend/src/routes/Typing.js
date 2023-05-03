@@ -43,7 +43,14 @@ class Typing extends Component {
             object = await getParagraphs();
         }
         // console.log(object);
-        this.paragraphs = object.paragraphs.map(paragraph => paragraph.content);
+        this.paragraphs = object.paragraphs.map(paragraph => {
+            return {
+                id: paragraph.id,
+                content: paragraph.content,
+            }
+            
+
+        });
         await this.props.setParagraphs(this.paragraphs);
         this.reloadState();
         
@@ -125,6 +132,7 @@ class Typing extends Component {
         if(this.props.typing.timeLeft <= 0) {
             return (<Result 
                 reloadState={this.reloadState}
+                type={this.props.type}
             />);
         }
         return  (

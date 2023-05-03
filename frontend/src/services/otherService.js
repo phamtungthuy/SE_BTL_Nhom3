@@ -11,4 +11,8 @@ const getTestParagraphs = (language, level) => {
     return axios.post('/api/get-test-paragraphs', {language: language, level: level});
 }
 
-export  {getAllRecords, getParagraphs, getTestParagraphs};
+const updateRecords = (info) => {
+    return axios.post('/api/update-records', info )
+}
+
+export  {getAllRecords, getParagraphs, getTestParagraphs, updateRecords};

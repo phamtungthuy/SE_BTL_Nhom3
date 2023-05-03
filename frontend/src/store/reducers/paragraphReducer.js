@@ -1,17 +1,19 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    currentParagraph: 'adsasda ads asd ads ad',
-    paragraphs: null
+    currentParagraph:  null,
+    paragraphs: null,
+    currentParagraphId: null,
 }
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.GET_RANDOM_PARAGRAPH:
-        let newParagraph  = state.paragraphs[Math.floor(Math.random() * state.paragraphs.length)];  
+        let newParagraph = state.paragraphs[Math.floor(Math.random() * state.paragraphs.length)];
         return{
                 ...state,
-                currentParagraph: newParagraph
+                currentParagraph: newParagraph.content,
+                currentParagraphId: newParagraph.id
             }
         case actionTypes.UPDATE_CURRENT_PARAGRAPH:
             console.log(action.paragraph);

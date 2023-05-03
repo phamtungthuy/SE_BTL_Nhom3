@@ -16,4 +16,5 @@ router.post('/api/login', userController.handleLogin);
 router.get('/api/get-all-users', userController.handleGetAllUsers);
 router.post('/api/create-new-user', userController.handleCreateNewUser);
 router.get('/api/get-all-records', recordController.handleGetAllRecords);
+router.post('/api/update-records', recordController.handleUpdateRecords);
 module.exports = router;

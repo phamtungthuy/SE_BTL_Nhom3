@@ -69,8 +69,75 @@ let getTestParagraphs =  (language, level) => {
     })
 }
 
+let updateRecords = async (userId, paragraphId, score, WPM, accuracy) => {
+    return new Promise(async(resolve, reject) => {
+        try{
+            let typing = await db.Typing.create({
+                user_id: userId,
+                paragraph_id: paragraphId,
+                score: score,
+                wpm: WPM,
+                accuracy: accuracy
+            })
+            let  record = await db.Record.findOne({
+                include: [
+                    {
+                        model: db.Typing,
+                        include: [{
+                            model: db.User,
+                            attributes: ['name'],
+                            where: {
+                                id: userId
+                            }
+                        }],
+                        where: {
+                            user_id: userId
+                        }
+                    }
+                ],
+                attributes: [
+                    'id',
+                    'total_score',
+                    'highest_wpm'
+                ],
+                raw: false
+               });
+               if(!record) {
+                        await db.Record.create({
+                            typing_id: typing.id,
+                            total_score: score,
+                            highest_wpm: WPM
+                        })
+                        resolve({
+                            message: 'create new record'
+                        })
+                        return ;
+               } 
+               else {
+                    let currentRecord = await db.Record.findOne({
+                        where: {
+                            id: record.id
+                        }
+                    })
+                    currentRecord.update({
+                        total_score: record.total_score + record.Typing.score,
+                        highest_wpm: Math.max(record.highest_wpm, record.Typing.wpm)
+                    })
+                    resolve({
+                        message: 'update record'
+                    })
+               }
+
+        } catch(err){
+            console.log(err);
+            reject(err);
+        }
+    })
+}
+
 module.exports = {
     getAllRecords,
     getParagraphsExceptTest,
-    getTestParagraphs
+    getTestParagraphs,
+    updateRecords
 }
