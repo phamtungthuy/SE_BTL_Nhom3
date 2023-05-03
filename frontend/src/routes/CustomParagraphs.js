@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import {emitter} from '../utils/emitter';
+import * as actions from '../store/actions/index';
+
 class CustomParagraphs extends React.Component {
   constructor(props) {
     super(props);
@@ -24,12 +26,13 @@ class CustomParagraphs extends React.Component {
             <div className ="edit-bar">
               <button onClick = {(event) => {
                 const editedParagraph = event.target.parentNode.previousSibling.firstChild.textContent;
-                emitter.emit('EVENT_SAVE_PARAGRAPH', {
-                  Paragraph: editedParagraph
-                });
+                this.props.updateCurrentParagraph(editedParagraph);
+                this.props.disableEditParagraph();
+                this.props.reloadState(false);
               }}>Save</button>
               <button onClick = {() => {
-                emitter.emit('EVENT_CANCEL_EDIT_PARAGRAPH')
+                this.props.disableEditParagraph();
+                this.props.reloadState();
             }}>Cancel</button>
             </div>
          </div>
@@ -40,12 +43,14 @@ class CustomParagraphs extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.admin.isLoggedIn
+        paragraph: state.paragraph.currentParagraph
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+      disableEditParagraph: () => dispatch(actions.disableEditParagraph()),
+      updateCurrentParagraph: (paragraph) => dispatch(actions.updateCurrentParagraph(paragraph))
     };
 };
 

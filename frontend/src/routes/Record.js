@@ -5,32 +5,19 @@ import { path } from '../utils';
 import { Table } from 'reactstrap';
 import './Record.scss';
 import { getAllRecords } from '../services/otherService';
+import * as actions from '../store/actions/index';
 
 
 class Record extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      records: []
-    }
+
   }
 
   componentDidMount =  async() => {
-    let records_tmp = await getAllRecords();
-    let records = [];
-    for(let i = 0; i < records_tmp.records.length; i++) {
-      records.push({
-        username: records_tmp.records[i].Typing.User.name,
-        highest_wpm: records_tmp.records[i].highest_wpm,
-        total_score: records_tmp.records[i].total_score,
-      
-      })
-    }
-    console.log('tmp: ', records_tmp);
-    console.log('records: ', records);
-    this.setState({
-      records: records
-    })
+    let records = await getAllRecords();
+    this.props.updateRecords(records.records);
+
   }
 
   render() {
@@ -45,16 +32,15 @@ class Record extends Component {
               </tr>
             </thead>
             <tbody>
-              {
-                this.state.records.map((record, index) => {
+              {this.props.records.map((record, index) => {
                   return <tr >
                     <td scope="row">{index + 1}</td>
                     <td>{record.username}</td>
                     <td>{record.highest_wpm}</td>
                     <td>{record.total_score}</td>
                   </tr>
-                })
-              }
+                })}
+
             </tbody>
           </Table>
         );
@@ -64,12 +50,14 @@ class Record extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.admin.isLoggedIn
+        isLoggedIn: state.admin.isLoggedIn,
+        records: state.record.records
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
+      updateRecords: (records) => dispatch(actions.updateRecords(records))
     };
 };
 

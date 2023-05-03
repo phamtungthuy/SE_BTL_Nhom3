@@ -5,7 +5,9 @@ import appReducer from "./appReducer";
 import adminReducer from "./adminReducer";
 import userReducer from "./userReducer";
 import wpmReducer from "./wpmReducer";
-
+import recordReducer from './recordReducer';
+import typingReducer from './typingReducer';
+import paragraphReducer from './paragraphReducer';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
@@ -26,5 +28,8 @@ export default (history) => combineReducers({
     admin: persistReducer(adminPersistConfig, adminReducer),
     user: userReducer,
     app: appReducer,
-    wpm: wpmReducer
+    wpm: wpmReducer,
+    record: recordReducer,
+    typing: typingReducer,
+    paragraph: paragraphReducer
 })
