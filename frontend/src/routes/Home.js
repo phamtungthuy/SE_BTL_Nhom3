@@ -52,7 +52,7 @@ class Home extends Component {
                     </a>)}
                     
                     {this.props.isLoggedIn && (<div className="loggedIn-user">
-                        <span>Username</span>
+                        <span>{this.props.userInfo.name}</span>
                         <i class="fas fa-user-circle login" onClick={this.HandleClickLogout}></i>
                     </div>)}
                 </nav>
