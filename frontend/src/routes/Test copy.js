@@ -9,7 +9,7 @@ class Test extends Component {
         this.state={
             isStarted: false,
             level: "Beginner",
-            language: 'Vietnamese',
+            language: 'English',
             errMessage: ''
         }
     }
@@ -24,16 +24,14 @@ class Test extends Component {
 
     handleLevelChange = (event) => {
         this.setState({
-            level: event.target.value
+                level: event.target.value
         })
-        console.log(event.target.value);
     }
 
     handleLanguageChange = (event) => {
         this.setState({
                 language: event.target.value
         })
-        console.log(event.target.value)
     }
 
     handleSubmit = (event) => {
@@ -54,26 +52,30 @@ class Test extends Component {
 
         if(!this.state.isStarted) {
             return (
-                <form className="specify-test" onSubmit={this.handleSubmit}>
-                    <h1>Level</h1>
-                    <div class="md-chips">
-                        <input value="Beginner" onChange={this.handleLevelChange} name="foo" type="radio" id="1"/> 
-                        <label for="1" class="md-chip md-chip-clickable md-chip-hover">Beginner</label>
-                        <input value="Intermediate" onChange={this.handleLevelChange} name="foo" type="radio" id="2"/> 
-                        <label for="2" class="md-chip md-chip-clickable md-chip-hover">Intermediate</label>
-                        <input value="Advanced" onChange={this.handleLevelChange} name="foo" type="radio" id="3"/>
-                        <label for="3" class="md-chip md-chip-clickable md-chip-hover">Advanced</label>
+                <div className="test-container">
+                <form onSubmit={this.handleSubmit} className="test-form">
+                    <h2 className="form-title">Start your test</h2>
+                    <div className="level">
+                        <label><b>Level:</b></label>
+                        <select value={this.state.level} onChange={this.handleLevelChange}>
+                            <option value="">--Select level--</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
                     </div>
-                    <h1 className="Language">Language</h1>
-                    <div class="md-chips">
-                        <input value="Vietnamese" onChange={this.handleLanguageChange} name="too" type="radio" id="4"/> 
-                        <label for="4" class="md-chip md-chip-clickable md-chip-hover">Vietnamese</label>
-                        <input value="English" onChange={this.handleLanguageChange} name="too" type="radio" id="5"/> 
-                        <label for="5" class="md-chip md-chip-clickable md-chip-hover">English</label>
+                    <div className="language">
+                        <label ><b>Language:</b></label>
+                        <select value={this.state.language} onChange={this.handleLanguageChange}>
+                            <option value="">--Select level--</option>
+                            <option value="English">English</option>
+                            <option value="Vietnamese">Vietnamese</option>
+                        </select>
                     </div>
                     {this.state.errMessage}
                     <button type="submit" className='submit-button'>Start</button>
                 </form>
+                </div>
             )
         }
 

@@ -63,15 +63,18 @@ class Home extends Component {
                             <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
                                 <h4>TYPING</h4>
                             </li>
-                            {this.props.isLoggedIn && <li onClick={() => this.setCurrentComponent(<Test />, 'Test')} className = {this.state.currentActive == 'Test' ? 'active' : ''}>
+
+                            {this.props.isLoggedIn ?
+                            <li onClick={() => this.setCurrentComponent(<Test />, 'Test')} className = {this.state.currentActive == 'Test' ? 'active' : ''}>
                                 <h4>TEST</h4>
-                            </li>}
-                            {
-                                this.props.isLoggedIn &&
+                            </li>
+                            : <li><h4><br/></h4></li>}
+
+                            {this.props.isLoggedIn ?
                                 <li onClick={() => this.setCurrentComponent(<Practice />, 'Practice')} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>
                                 <h4>PRACTICE</h4>
                             </li>
-                            }
+                            : <li><h4><br/></h4></li>}
                             
                             <li onClick={() => this.setCurrentComponent(<Record />, 'Record')} className = {this.state.currentActive == 'Record' ? 'active' : ''}>
                                 <h4>RECORD</h4>

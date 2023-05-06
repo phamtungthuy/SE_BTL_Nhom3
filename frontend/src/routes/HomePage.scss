@@ -2,8 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Cabin:ital,wght@1,600&family=Poppins&display=swap');
 
-/* ============ Hero ============ */
-
 #hero,#features{
   display: flex;
   justify-content: space-between;
@@ -54,6 +52,7 @@
   padding-block: 20px;
   margin-top: 30px;
 }
+
 .feature{
   width: 25vw;
 }
@@ -63,64 +62,4 @@
 }
 .feature p{
   padding: 5px;
-}
-
-/* ============ Media Queries ============ */
-
-@media screen and (max-width: 524px) {
-  .navigation{
-    display: none;
-    position: absolute;
-    background-color: #0072ff;
-    top: 62px;
-    left: 0;
-    width: 100%;
-  }
-  ul.main-menu{
-    flex-direction: column;
-  }
-  .brand{
-    flex-grow: 1;
-  }
-  .mobile-nav{
-    display: block;
-    font-size: 25px;
-  }
-}
-
-@media screen and (min-width: 525px) {
-  .navigation {
-    display: block;
-  }
-}
-
-@media screen and (max-width: 670px) {
-  .nav-item{
-    display: inline-flex;
-  }
-  .navigation{
-    margin: auto;
-  }
-  .brand-name{
-    margin-bottom: 10px;
-  }
-  /* footer{
-    font-size: 12px;
-  } */
-}
-
-@media screen and (max-width: 768px) {
-  .left-section,.right-section{
-    width: 60vw;
-  }
-  .feature{
-    width: 60vw;
-    margin-block-end: 10px;
-  }
-  .navbar{
-    padding: 15px 20px;
-  }
-  #hero,#features{
-    margin: 0 20px 10px 20px;
-  }
 }
