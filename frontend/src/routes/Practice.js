@@ -23,6 +23,7 @@ class Practice extends Component {
         return (
                 <Typing 
                 type='practice'
+                // firstTime ={true}
                 />
         );
     }

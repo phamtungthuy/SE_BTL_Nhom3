@@ -15,6 +15,7 @@ class Typing extends Component {
         this.divRef = React.createRef();
         this.wrongWords = [];
         this.paragraphs = [];
+        this.isFirstTime = true;
     }
 
 
@@ -38,6 +39,7 @@ class Typing extends Component {
     componentDidMount = async () => {
         let object;
         if(this.props.type == 'test') {
+
             object = await getTestParagraphs(this.props.language, this.props.level);
         } else {
             object = await getParagraphs();
@@ -122,12 +124,18 @@ class Typing extends Component {
         }
     }
     
+    disableFirstTime = () => {
+        this.isFirstTime = false;
+    }
 
     render() {
         if(this.props.typing.editable) {
             return <CustomParagraphs
-                reloadState = {this.reloadState}
+            isFirstTime = {this.isFirstTime}
+            reloadState = {this.reloadState}
+            disableFirstTime = {this.disableFirstTime}
             />
+            
         }
         if(this.props.typing.timeLeft <= 0) {
             return (<Result 

@@ -10,6 +10,7 @@ import typingReducer from './typingReducer';
 import paragraphReducer from './paragraphReducer';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/lib/storage';
+import componentReducer from './componentReducer';
 import { persistReducer } from 'redux-persist';
 
 const persistCommonConfig = {
@@ -31,5 +32,6 @@ export default (history) => combineReducers({
     wpm: wpmReducer,
     record: recordReducer,
     typing: typingReducer,
-    paragraph: paragraphReducer
+    paragraph: paragraphReducer,
+    component: componentReducer
 })

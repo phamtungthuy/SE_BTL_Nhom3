@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import {emitter} from '../utils/emitter';
 import * as actions from '../store/actions/index';
 
+
 class CustomParagraphs extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
 
-    };
   }
 
 
@@ -25,15 +24,20 @@ class CustomParagraphs extends React.Component {
             </div>
             <div className ="edit-bar">
               <button onClick = {(event) => {
+                this.props.disableFirstTime();
                 const editedParagraph = event.target.parentNode.previousSibling.firstChild.textContent;
                 this.props.updateCurrentParagraph(editedParagraph);
                 this.props.disableEditParagraph();
                 this.props.reloadState(false);
-              }}>Save</button>
+              }}>{this.props.isFirstTime ? 'Start': 'Save'}</button>
               <button onClick = {() => {
+                if(this.props.isFirstTime) {
+                  this.props.disableFirstTime();
+                  this.props.returnHomePage();
+                }
                 this.props.disableEditParagraph();
-                this.props.reloadState();
-            }}>Cancel</button>
+                this.props.reloadState(false);
+            }}>{this.props.isFirstTime ? 'Exit' : 'Cancel'}</button>
             </div>
          </div>
       </Fragment>
@@ -50,7 +54,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
       disableEditParagraph: () => dispatch(actions.disableEditParagraph()),
-      updateCurrentParagraph: (paragraph) => dispatch(actions.updateCurrentParagraph(paragraph))
+        returnHomePage: () => dispatch(actions.returnHomePage()),
+        updateCurrentParagraph: (paragraph) => dispatch(actions.updateCurrentParagraph(paragraph))
     };
 };
 

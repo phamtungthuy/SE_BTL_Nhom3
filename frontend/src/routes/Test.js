@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Typing from './Typing'
 import './Test.scss';
+import HomePage from './HomePage';
+import { push } from "connected-react-router";
+import * as actions from '../store/actions';
 
 class Test extends Component {
     constructor(props) {
@@ -50,9 +53,13 @@ class Test extends Component {
         })
     }
 
+    handleCancel = () => {
+        this.props.returnHomePage();
+    }
+
     render() {
 
-        if(!this.state.isStarted) {
+        if(!this.state.isStarted && !this.state.isExist) {
             return (
                 <form className="specify-test" onSubmit={this.handleSubmit}>
                     <h1>Level</h1>
@@ -73,6 +80,7 @@ class Test extends Component {
                     </div>
                     {this.state.errMessage}
                     <button type="submit" className='submit-button'>Start</button>
+                    <button type ='' onClick={this.handleCancel} className='cancel-button'>Cancel</button>
                 </form>
             )
         }
@@ -96,6 +104,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        navigate: (path) => dispatch(push(path)),
+        returnHomePage: () => dispatch(actions.returnHomePage()),
     };
 };
 
