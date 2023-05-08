@@ -82,8 +82,12 @@ class Login extends Component {
                 })
             } else if(data && data.errCode === 0) {
                 this.props.userLoginSuccess(data.user);
-                this.props.adminLoginSuccess(data.user);
-                this.props.navigate('/system/user-manage');
+                if(this.props.userInfo.isAdmin) {
+                    this.props.adminLoginSuccess(data.user);
+                    this.props.navigate('/system/user-manage');
+                } else {
+                    this.props.navigate('/');
+                }
                 console.log('Login succeeds');
             }
         } catch(error) {
@@ -235,7 +239,8 @@ class Login extends Component {
 const mapStateToProps = state => {
     return {
         lang: state.app.language,
-        isLoggedInAdmin: state.admin.isLoggedIn
+        isLoggedInAdmin: state.admin.isLoggedIn,
+        userInfo: state.user.userInfo
     };
 };
 

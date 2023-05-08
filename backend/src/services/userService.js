@@ -13,7 +13,7 @@ let handleUserLogin = (email, password) => {
             if(isExist) {
                 let user = await db.User.findOne({
                     where: {email: email},
-                    attributes: ['email', 'password', 'name', 'id'],
+                    attributes: ['email', 'password', 'name', 'id', 'isAdmin'],
                     raw: true
 
                 })
@@ -24,7 +24,7 @@ let handleUserLogin = (email, password) => {
                    if(check || password == user.password) {
                         userData.errCode = 0;
                         userData.errMessage = 'OK';
-                        delete user['password'];
+                        await delete user['password'];
                         userData.user = user;
                         
                    } else {

@@ -20,11 +20,17 @@ class Home extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props.userInfo);
         this.props.disableHeader(); 
     }  
 
+    componentWillUnmount() {
+        this.props.enableHeader();
+    }
+
     HandleClickLogout = () => {
         this.props.userLogout();
+        this.props.adminLogout();
     }
 
     render() {
@@ -113,6 +119,7 @@ const mapDispatchToProps = dispatch => {
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
         userLoginFail: () => dispatch(actions.userLoginFail()),
         userLogout: () => dispatch(actions.processLogout()),
+        adminLogout: () => dispatch(actions.processLogout()),
         returnHomePage: () => dispatch(actions.returnHomePage()),
         setCurrentComponent: (component, name) => dispatch(actions.setCurrentComponent(component, name)),
         disableHeader: () => dispatch(actions.disableHeader()),
