@@ -73,7 +73,8 @@ let getAllUsers = (userId) => {
                 users = await db.User.findAll({
                     attributes: {
                         exclude: ['password']
-                    }
+                    },
+                    raw: true
                 });
                 
             } else if(userId) {
@@ -81,7 +82,8 @@ let getAllUsers = (userId) => {
                     where: {id: userId},
                     attributes: {
                         exclude: ['password']
-                    }
+                    },
+                    raw: true
                 });
                 console.log(users);
             }
@@ -107,7 +109,7 @@ let hashUserPassword = (password) => {
 let createNewUser = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if(!data.email || !data.password || !data.username) {
+            if(!data.email || !data.password || !data.name) {
                 resolve({
                     errCode: 1,
                     errMessage: 'Missing parameters'
@@ -126,10 +128,10 @@ let createNewUser = (data) => {
             let hashPasswordFromBcrypt = await hashUserPassword(data.password);
             await db.User.create({
                   email: data.email,
-                  name: data.username,
+                  name: data.name,
                   password: hashPasswordFromBcrypt,
                   address: data.address,
-                  phonenumber: data.phonenumber,
+                  phoneNumber: data.phoneNumber,
                   gender: data.gender == 1 ? true : false
             })
             resolve({
@@ -178,8 +180,7 @@ let updateUserData = async (data) => {
                 raw: false
             });
             if(user) {
-                user.firstName = data.firstName;
-                user.lastName = data.lastName;
+                user.name = data.name,
                 user.address = data.address;
                 await user.save();
                     

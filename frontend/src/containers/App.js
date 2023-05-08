@@ -44,7 +44,7 @@ class App extends Component {
                 <Router history={history}>
                     <div className="main-container">
                         <ConfirmModal />
-                        {this.props.isLoggedIn && <Header />}
+                        {this.props.isLoggedIn && this.props.displayHeader && <Header />}
 
                         <span className="content-container">
                             <Switch>
@@ -70,7 +70,8 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         started: state.app.started,
-        isLoggedIn: state.admin.isLoggedIn
+        isLoggedIn: state.admin.isLoggedIn,
+        displayHeader: state.admin.displayHeader
     };
 };
 

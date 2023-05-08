@@ -82,7 +82,8 @@ class Login extends Component {
                 })
             } else if(data && data.errCode === 0) {
                 this.props.userLoginSuccess(data.user);
-                this.props.navigate('/');
+                this.props.adminLoginSuccess(data.user);
+                this.props.navigate('/system/user-manage');
                 console.log('Login succeeds');
             }
         } catch(error) {
@@ -233,7 +234,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        lang: state.app.language
+        lang: state.app.language,
+        isLoggedInAdmin: state.admin.isLoggedIn
     };
 };
 
@@ -242,6 +244,7 @@ const mapDispatchToProps = dispatch => {
         navigate: (path) => dispatch(push(path)),
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
         userLoginFail: () => dispatch(actions.userLoginFail()),
+        adminLoginSuccess: (userInfo) => dispatch(actions.adminLoginSuccess(userInfo)),
     };
 };
 
