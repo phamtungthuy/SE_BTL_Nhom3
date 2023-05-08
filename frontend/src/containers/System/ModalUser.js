@@ -10,7 +10,7 @@ class ModalUser extends Component {
         this.state = {
             email: '',
             password: '',
-            name: '',
+            username: '',
             address: '',
             phoneNumber: ''
         }
@@ -22,7 +22,7 @@ class ModalUser extends Component {
             this.setState({
                 email: '',
                 password: '',
-                name: '',
+                username: '',
                 address: '',
                 phoneNumber: ''
             })
@@ -37,7 +37,7 @@ class ModalUser extends Component {
         this.setState({
             email: '',
             password: '',
-            name: '',
+            username: '',
             address: '',
             phoneNumber: ''
         })
@@ -51,10 +51,12 @@ class ModalUser extends Component {
 
     checkValidInput = () => {
         let isValid = true;
-        let arrInput = ['email', 'password', 'name', 'address', 'phoneNumber'];
+        console.log(this.state);
+        let arrInput = ['email', 'password', 'username', 'address', 'phoneNumber'];
         for(let i = 0; i < arrInput.length; i++) {
             if(!this.state[arrInput[i]]) {
                 isValid = false;
+                console.log('yes');
                 alert('Missing parameter: ' + arrInput[i]);
                 break;
             }
@@ -105,8 +107,8 @@ class ModalUser extends Component {
                         <label>Name</label>
                         <input 
                         type ="text" 
-                        onChange ={(event) => {this.handleOnchangeInput(event, "name");}}
-                        value={this.state.name}
+                        onChange ={(event) => {this.handleOnchangeInput(event, "username");}}
+                        value={this.state.username}
                         />                            
                     </div>
                     <div className = "input-container">

@@ -61,6 +61,7 @@ class ModalUser extends Component {
 
     handleAddNewParagraph = () => {
         let isValid = this.checkValidInput();
+        console.log(this.state)
         if(isValid) {
             this.props.createNewParagraph(this.state);
             this.toggle();

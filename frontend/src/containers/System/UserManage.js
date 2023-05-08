@@ -60,15 +60,12 @@ class UserManage extends Component {
         await this.getAllUsersFromReact();
         emitter.emit('EVENT_CLEAR_MODAL_DATA');
       }
-      console.log('response create user: ', response);
     } catch(err) {
       console.log(err);
     }
-    console.log('check data from child: ', data )
   }
 
   handleDeleteUser = async (user) => {
-    console.log('delete user', user);
     if(!window.confirm('Are you sure you want to delete this user?') ){
       return;
     }
@@ -115,7 +112,6 @@ class UserManage extends Component {
    */
 
   render() {
-    console.log("check render", this.state);
     let arrUsers = this.state.arrUsers;
     return (
       <div className="users-container">

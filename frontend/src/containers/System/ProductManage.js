@@ -67,11 +67,9 @@ class ProductManage extends Component {
             await this.getAllParagraphsFromReact();
             emitter.emit('EVENT_CLEAR_MODAL_DATA');
           }
-          console.log('response create user: ', response);
         } catch(err) {
           console.log(err);
         }
-        console.log('check data from child: ', data )
       }
     
       handleDeleteParagraph = async (user) => {

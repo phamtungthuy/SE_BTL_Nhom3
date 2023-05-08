@@ -138,6 +138,7 @@ let updateRecords = async (userId, paragraphId, score, WPM, accuracy) => {
 let createNewParagraph = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log(data);
             if(!data.content || !data.difficulty || !data.language) {
                 resolve({
                     errCode: 1,
