@@ -69,6 +69,9 @@ class UserManage extends Component {
 
   handleDeleteUser = async (user) => {
     console.log('delete user', user);
+    if(!window.confirm('Are you sure you want to delete this user?') ){
+      return;
+    }
     try {
       let response = await deleteUserService(user.id);
       if(response && response.errCode == 0) {
@@ -144,6 +147,7 @@ class UserManage extends Component {
               <th>Email</th>
               <th>Name</th>
               <th>Address</th>
+              <th>phoneNumber</th>
               <th>Action</th>
             </tr>
             </thead>
@@ -158,6 +162,7 @@ class UserManage extends Component {
                       <td>{user.email}</td>
                       <td>{user.name}</td>
                       <td>{user.address}</td>
+                      <td>{user.phoneNumber}</td>
                       <td>
                         <button className="btn-edit" onClick ={() => this.handleEditUser(user)}>
                           <i className="fas fa-pencil-alt"></i>

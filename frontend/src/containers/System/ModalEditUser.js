@@ -13,7 +13,8 @@ class ModalEditUser extends Component {
             email: '',
             password: '',
             name: '',
-            address: ''
+            address: '',
+            phoneNumber: ''
         }
         this.listenToEmitter();
     }
@@ -21,10 +22,12 @@ class ModalEditUser extends Component {
     listenToEmitter() {
         emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
             this.setState({
+                id: '',
                 email: '',
                 password: '',
                 name: '',
-                address: ''
+                address: '',
+                phoneNumber: ''
             })
         });
     }
@@ -37,7 +40,8 @@ class ModalEditUser extends Component {
                 email: user.email,
                 password: 'hardcode',
                 name: user.name,
-                address:user.address
+                address:user.address,
+                phoneNumber: user.phoneNumber
             })
         }
         console.log('did mount edit modal ', this.props.currentUser);
@@ -55,7 +59,7 @@ class ModalEditUser extends Component {
 
     checkValidInput = () => {
         let isValid = true;
-        let arrInput = ['email', 'password', 'name', 'address'];
+        let arrInput = ['email', 'password', 'name', 'address', 'phoneNumber'];
         for(let i = 0; i < arrInput.length; i++) {
             if(!this.state[arrInput[i]]) {
                 isValid = false;
@@ -110,8 +114,16 @@ class ModalEditUser extends Component {
                         <label>Name</label>
                         <input 
                         type ="text" 
-                        onChange ={(event) => {this.handleOnchangeInput(event, "firstName");}}
+                        onChange ={(event) => {this.handleOnchangeInput(event, "name");}}
                         value={this.state.name}
+                        />                            
+                    </div>
+                    <div className = "input-container">
+                        <label>Phone Number</label>
+                        <input 
+                        type ="text" 
+                        onChange ={(event) => {this.handleOnchangeInput(event, "phoneNumber");}}
+                        value={this.state.phoneNumber}
                         />                            
                     </div>
                     <div className = "input-container max-width-input">

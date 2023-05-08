@@ -11,7 +11,8 @@ class ModalUser extends Component {
             email: '',
             password: '',
             name: '',
-            address: ''
+            address: '',
+            phoneNumber: ''
         }
         this.listenToEmitter();
     }
@@ -22,7 +23,8 @@ class ModalUser extends Component {
                 email: '',
                 password: '',
                 name: '',
-                address: ''
+                address: '',
+                phoneNumber: ''
             })
         });
     }
@@ -36,7 +38,8 @@ class ModalUser extends Component {
             email: '',
             password: '',
             name: '',
-            address: ''
+            address: '',
+            phoneNumber: ''
         })
     }
 
@@ -48,7 +51,7 @@ class ModalUser extends Component {
 
     checkValidInput = () => {
         let isValid = true;
-        let arrInput = ['email', 'password', 'name', 'address'];
+        let arrInput = ['email', 'password', 'name', 'address', 'phoneNumber'];
         for(let i = 0; i < arrInput.length; i++) {
             if(!this.state[arrInput[i]]) {
                 isValid = false;
@@ -104,6 +107,14 @@ class ModalUser extends Component {
                         type ="text" 
                         onChange ={(event) => {this.handleOnchangeInput(event, "name");}}
                         value={this.state.name}
+                        />                            
+                    </div>
+                    <div className = "input-container">
+                        <label>Phone Number</label>
+                        <input 
+                        type ="text" 
+                        onChange ={(event) => {this.handleOnchangeInput(event, "phoneNumber");}}
+                        value={this.state.phoneNumber}
                         />                            
                     </div>
                     <div className = "input-container max-width-input">

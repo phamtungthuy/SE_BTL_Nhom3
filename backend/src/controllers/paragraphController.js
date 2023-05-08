@@ -24,7 +24,47 @@ let getTestParagraphs = async (req, res) => {
     })
 }
 
+let handleCreateNewParagraph = async (req, res) => {
+    console.log(req.body);
+    let message = await otherServices.createNewParagraph(req.body);
+    return res.status(200).json(message);    
+}
+
+let handleGetAllParagraphs = async (req, res) => {
+
+    let paragraphs = await otherServices.getAllParagraphs();
+    console.log(paragraphs);
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'OK',
+        paragraphs:paragraphs
+    });
+}
+
+let handleEditParagraph  = async (req, res) => {
+    let data = req.body;
+    let message = await otherServices.updateParagraphData(data);
+    return res.status(200).json(message);
+}
+
+let handleDeleteParagraph = async (req, res) => {
+    if(!req.body.id) {
+        return res.status(200).json({
+            errCode: 1,
+            errMessage: "Missing required parameters"
+        });
+    }
+    let message = await otherServices.deleteParagraph(req.body.id);
+    return res.status(200).json(message); 
+}
+
+
+
 module.exports = {
     getParagraphs,
-    getTestParagraphs
+    getTestParagraphs,
+    handleCreateNewParagraph,
+    handleGetAllParagraphs,
+    handleEditParagraph,
+    handleDeleteParagraph
 }

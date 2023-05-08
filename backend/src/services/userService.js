@@ -13,7 +13,7 @@ let handleUserLogin = (email, password) => {
             if(isExist) {
                 let user = await db.User.findOne({
                     where: {email: email},
-                    attributes: ['email', 'password', 'name', 'id', 'isAdmin'],
+                    attributes: ['email', 'password', 'name', 'id', 'phoneNumber', 'isAdmin'],
                     raw: true
 
                 })
@@ -182,6 +182,7 @@ let updateUserData = async (data) => {
             if(user) {
                 user.name = data.name,
                 user.address = data.address;
+                user.phoneNumber = data.phoneNumber;
                 await user.save();
                     
                 resolve({
