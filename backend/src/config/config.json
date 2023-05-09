@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "",
+    "password": "tungthuy47",
     "database": "go10ngon",
     "host": "localhost",
     "dialect": "mysql",
-    "port": "3308",
+    "port": "3306",
     "define": {
         "timestamps": false
     }

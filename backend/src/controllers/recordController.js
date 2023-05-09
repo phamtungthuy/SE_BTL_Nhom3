@@ -9,11 +9,7 @@ let handleGetAllRecords = async (req, res) => {
 };
 
 let handleUpdateRecords = async (req, res) => {
-    console.log( req.body.userId,
-        req.body.paragraphId,
-        req.body.score,
-        req.body.wpm,
-        req.body.accuracy)
+    console.log('records: /................./', req.body)
     let object = await otherServices.updateRecords(
         req.body.userId,
         req.body.paragraphId,

@@ -35,7 +35,6 @@ let getParagraphsExceptTest = async (language, difficulty) => {
                 is_test: false
                }
             });
-            console.log(paragraphs);
             resolve(paragraphs);
         } catch(err){
             console.log(err);
@@ -56,11 +55,10 @@ let getTestParagraphs =  (language, level) => {
             }
             let  paragraphs = await db.Paragraph.findAll({
                where: {
-                language,
+                language: language,
                 difficulty: level
                }
             });
-            console.log(paragraphs);
             resolve(paragraphs);
         } catch(err){
             console.log(err);
@@ -119,9 +117,9 @@ let updateRecords = async (userId, paragraphId, score, WPM, accuracy) => {
                             id: record.id
                         }
                     })
-                    currentRecord.update({
-                        total_score: record.total_score + record.Typing.score,
-                        highest_wpm: Math.max(record.highest_wpm, record.Typing.wpm)
+                    await currentRecord.update({
+                        total_score: currentRecord.total_score + score,
+                        highest_wpm: Math.max(currentRecord.highest_wpm, WPM)
                     })
                     resolve({
                         message: 'update record'
