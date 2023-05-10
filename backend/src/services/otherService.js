@@ -56,7 +56,8 @@ let getTestParagraphs =  (language, level) => {
             let  paragraphs = await db.Paragraph.findAll({
                where: {
                 language: language,
-                difficulty: level
+                difficulty: level,
+                is_test: true
                }
             });
             resolve(paragraphs);
