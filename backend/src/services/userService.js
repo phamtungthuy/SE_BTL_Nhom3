@@ -13,7 +13,7 @@ let handleUserLogin = (email, password) => {
             if(isExist) {
                 let user = await db.User.findOne({
                     where: {email: email},
-                    attributes: ['email', 'password', 'name', 'id'],
+                    attributes: ['email', 'password', 'name', 'id', 'phoneNumber', 'isAdmin'],
                     raw: true
 
                 })
@@ -24,7 +24,7 @@ let handleUserLogin = (email, password) => {
                    if(check || password == user.password) {
                         userData.errCode = 0;
                         userData.errMessage = 'OK';
-                        delete user['password'];
+                        await delete user['password'];
                         userData.user = user;
                         
                    } else {
@@ -68,23 +68,13 @@ let checkUserEmail = (userEmail) => {
 let getAllUsers = (userId) => {
     return new Promise(async (resolve, reject) => {
         try{
-            let users = '';
-            if(userId == 'ALL' ) {
-                users = await db.User.findAll({
+            let users = await db.User.findAll({
                     attributes: {
                         exclude: ['password']
-                    }
+                    },
+                    raw: true
                 });
-                
-            } else if(userId) {
-                users = await db.User.findOne({
-                    where: {id: userId},
-                    attributes: {
-                        exclude: ['password']
-                    }
-                });
-                console.log(users);
-            }
+           
             resolve(users);
       } catch(e) {
         console.log('error!!!!!!!!');
@@ -129,7 +119,7 @@ let createNewUser = (data) => {
                   name: data.username,
                   password: hashPasswordFromBcrypt,
                   address: data.address,
-                  phonenumber: data.phonenumber,
+                  phoneNumber: data.phoneNumber,
                   gender: data.gender == 1 ? true : false
             })
             resolve({
@@ -178,9 +168,9 @@ let updateUserData = async (data) => {
                 raw: false
             });
             if(user) {
-                user.firstName = data.firstName;
-                user.lastName = data.lastName;
+                user.name = data.name,
                 user.address = data.address;
+                user.phoneNumber = data.phoneNumber;
                 await user.save();
                     
                 resolve({

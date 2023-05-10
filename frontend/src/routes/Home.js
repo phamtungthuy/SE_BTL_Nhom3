@@ -16,22 +16,21 @@ import AboutUs from './AboutUs';
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            currentComponent: <HomePage/>,
-            currentActive: null
-        
-        };
+
     }
 
-    setCurrentComponent(component, name) {
-        this.setState({
-            currentComponent: component,
-            currentActive: name
-        })
+    componentDidMount() {
+        console.log(this.props.userInfo);
+        this.props.disableHeader(); 
+    }  
+
+    componentWillUnmount() {
+        this.props.enableHeader();
     }
 
     HandleClickLogout = () => {
         this.props.userLogout();
+        this.props.adminLogout();
     }
 
     render() {
@@ -39,7 +38,7 @@ class Home extends Component {
         return (
             <div className="page">
                 <nav className="header">
-                    <div className='logo' onClick={() => this.setCurrentComponent(<HomePage />, 'HomePage')}>
+                    <div className='logo' onClick={() => this.props.setCurrentComponent(<HomePage />, 'HomePage')}>
                         <div className='circle'>
                             <div className="circle1"></div>
                             <div className="circle2"></div>
@@ -52,7 +51,7 @@ class Home extends Component {
                     </a>)}
                     
                     {this.props.isLoggedIn && (<div className="loggedIn-user">
-                        <span>Username</span>
+                        <span>{this.props.userInfo.name}</span>
                         <i class="fas fa-user-circle login" onClick={this.HandleClickLogout}></i>
                     </div>)}
                 </nav>
@@ -60,24 +59,27 @@ class Home extends Component {
                 <div className="body-container" isOpen = {false}>
                     <div className="navigation">
                         <ul>
-                            <li onClick={() => this.setCurrentComponent(<Typing />, 'Typing')} className = {this.state.currentActive == 'Typing' ? 'active' : ''}>
+                            <li onClick={() => this.props.setCurrentComponent(<Typing />, 'Typing')} className = {this.props.currentActive == 'Typing' ? 'active' : ''}>
                                 <h4>TYPING</h4>
                             </li>
-                            {this.props.isLoggedIn && <li onClick={() => this.setCurrentComponent(<Test />, 'Test')} className = {this.state.currentActive == 'Test' ? 'active' : ''}>
+
+                            {this.props.isLoggedIn ?
+                            <li onClick={() => this.props.setCurrentComponent(<Test />, 'Test')} className = {this.props.currentActive == 'Test' ? 'active' : ''}>
                                 <h4>TEST</h4>
-                            </li>}
-                            {
-                                this.props.isLoggedIn &&
-                                <li onClick={() => this.setCurrentComponent(<Practice />, 'Practice')} className = {this.state.currentActive == 'Practice' ? 'active' : ''}>
+                            </li>
+                            : <li><h4><br/></h4></li>}
+
+                            {this.props.isLoggedIn ?
+                                <li onClick={() => this.props.setCurrentComponent(<Practice />, 'Practice')} className = {this.props.currentActive == 'Practice' ? 'active' : ''}>
                                 <h4>PRACTICE</h4>
                             </li>
-                            }
+                            : <li><h4><br/></h4></li>}
                             
-                            <li onClick={() => this.setCurrentComponent(<Record />, 'Record')} className = {this.state.currentActive == 'Record' ? 'active' : ''}>
+                            <li onClick={() => this.props.setCurrentComponent(<Record />, 'Record')} className = {this.props.currentActive == 'Record' ? 'active' : ''}>
                                 <h4>RECORD</h4>
                             </li>
                             <li>
-                                <div className = "AboutUs" onClick={() => this.setCurrentComponent(<AboutUs />, 'About')}>
+                                <div className = "AboutUs" onClick={() => this.props.setCurrentComponent(<AboutUs />, 'About')}>
                                     About us
                                 </div>
                                 <div className="contact">
@@ -90,7 +92,7 @@ class Home extends Component {
                     </div>
                     <div className="body-content">
                         <Switch>
-                            <Route render={() => this.state.currentComponent} />
+                            <Route render={() => this.props.currentComponent} />
                         </Switch>
                        
                     </div>
@@ -104,7 +106,10 @@ class Home extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        userInfo: state.user.userInfo
+        userInfo: state.user.userInfo,
+        currentComponent: state.component.currentComponent,
+        currentActive: state.component.currentActive,
+        isLoggedInAdmin: state.admin.isLoggedIn
     };
 };
 
@@ -113,7 +118,12 @@ const mapDispatchToProps = dispatch => {
         navigate: (path) => dispatch(push(path)),
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
         userLoginFail: () => dispatch(actions.userLoginFail()),
-        userLogout: () => dispatch(actions.processLogout())
+        userLogout: () => dispatch(actions.processLogout()),
+        adminLogout: () => dispatch(actions.processLogout()),
+        returnHomePage: () => dispatch(actions.returnHomePage()),
+        setCurrentComponent: (component, name) => dispatch(actions.setCurrentComponent(component, name)),
+        disableHeader: () => dispatch(actions.disableHeader()),
+        enableHeader: () => dispatch(actions.enableHeader())
     };
 };
 

@@ -33,6 +33,8 @@ let login = (req, res, next) => {
     .catch(err => {res.status(202).send({message: err.message})})
 }
 
+
+
 module.exports = {
     getUser,
     login

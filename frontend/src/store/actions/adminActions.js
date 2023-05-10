@@ -12,3 +12,11 @@ export const adminLoginFail = () => ({
 export const processLogout = () => ({
     type: actionTypes.PROCESS_LOGOUT
 })
+
+export const enableHeader = () => ({
+    type: actionTypes.ENABLE_HEADER
+})
+
+export const disableHeader = () => ({
+    type: actionTypes.DISABLE_HEADER
+})

@@ -11,10 +11,7 @@ class RegisterPackageGroupOrAcc extends Component {
 
 
     render() {
-        return (
-            <div className="text-center">
-                register package group or account
-            </div>)
+       return <div>Manage</div>
     }
 
 }
