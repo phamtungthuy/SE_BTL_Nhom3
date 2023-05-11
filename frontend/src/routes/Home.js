@@ -46,7 +46,7 @@ class Home extends Component {
                         </div>
                         <p className="home">Go10ngon</p>
                     </div>
-                    {!this.props.isLoggedIn && (<a href='/login'>
+                    {!this.props.isLoggedIn && (<a href={this.props.isLoggedInAdmin ? '/system/user-manage' : '/login'}>
                         <i className="fas fa-user-circle login"></i>
                     </a>)}
                     

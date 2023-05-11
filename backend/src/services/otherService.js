@@ -193,7 +193,7 @@ let deleteParagraph = (paragraphId) => {
 
         resolve({
             errCode: 0,
-            errMessage: `The user has been deleted`
+            errMessage: `The paragraph has been deleted`
         })
     });
 }
@@ -226,7 +226,7 @@ let updateParagraphData = async (data) => {
             } else {
                 resolve({
                     errCode: 1,
-                    errMessage: `User's not found!`
+                    errMessage: `Paragraph's not found!`
                 });
             }
         } catch(err){

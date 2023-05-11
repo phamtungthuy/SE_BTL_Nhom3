@@ -10,7 +10,6 @@ let router = express.Router();
 router.get('/', homeController.getHomePage);
 router.get('/api/get-paragraphs', paragraphController.getParagraphs);
 router.post('/api/get-test-paragraphs', paragraphController.getTestParagraphs);
-router.get('/user/:id', getUser)
 // router.post('/login', login)
 router.post('/api/login', userController.handleLogin);
 router.get('/api/get-all-users', userController.handleGetAllUsers);
