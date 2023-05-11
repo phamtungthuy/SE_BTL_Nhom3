@@ -72,7 +72,10 @@ let getAllUsers = (userId) => {
                     attributes: {
                         exclude: ['password']
                     },
-                    raw: true
+                    raw: true,
+                    where: {
+                        isAdmin: false
+                    }
                 });
            
             resolve(users);
