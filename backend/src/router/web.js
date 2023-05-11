@@ -10,15 +10,15 @@ let router = express.Router();
 router.get('/', homeController.getHomePage);
 router.get('/api/get-paragraphs', paragraphController.getParagraphs);//
 router.post('/api/get-test-paragraphs', paragraphController.getTestParagraphs);//
-// router.get('/user/:id', getUser)
-// router.post('/login', login)
+
+router.get('/api/get-paragraphs', paragraphController.getParagraphs);
+router.post('/api/get-test-paragraphs', paragraphController.getTestParagraphs);
+
 router.post('/api/login', userController.handleLogin);//
 router.get('/api/get-all-users', userController.handleGetAllUsers);//
 router.post('/api/create-new-user', userController.handleCreateNewUser);//
 router.get('/api/get-all-records', recordController.handleGetAllRecords);//
 router.post('/api/update-records', recordController.handleUpdateRecords);
-// router.get('/api/get-all-users', userController.handleGetAllUsers);
-// router.post('/api/create-new-user', userController.handleCreateNewUser);
 router.put('/api/edit-user', userController.handleEditUser);//
 router.delete('/api/delete-user', userController.handleDeleteUser);//
 
