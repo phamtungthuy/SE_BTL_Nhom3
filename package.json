@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "mocha": "^10.2.0",
     "react-icons": "^4.8.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0"
   }
 }
