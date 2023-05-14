@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './Result.scss'
 import html2canvas from 'html2canvas';
-import {defaultTime} from '../store/reducers/typingReducer';
-import { updateRecords } from '../services/otherService';
+import {defaultTime} from '../../store/reducers/typingReducer';
+import { updateRecords } from '../../services/otherService';
 class Result extends Component {
 
     constructor(props) {

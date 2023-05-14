@@ -1,5 +1,5 @@
 import actionTypes from '../actions/actionTypes';
-import HomePage from '../../routes/HomePage';
+import HomePage from '../../components/Views/HomePage';
 
 const initialState = {
     currentComponent: <HomePage/>,

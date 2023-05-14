@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import "./Home.scss";
 import "./HomePage.scss";
-import heroImage from "../assets/images/heroImage.jpg"
-import timer from "../assets/images/timer.png"
-import file from "../assets/images/file.png"
-import growGraph from "../assets/images/growth-graph.png"
+import heroImage from "../../assets/images/heroImage.jpg"
+import timer from "../../assets/images/timer.png"
+import file from "../../assets/images/file.png"
+import growGraph from "../../assets/images/growth-graph.png"
 
 class HomePage extends Component {
   render() {

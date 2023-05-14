@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Typing from './Typing'
 import './Test.scss';
-import HomePage from './HomePage';
+import HomePage from '../../components/Views/HomePage';
 import { push } from "connected-react-router";
-import * as actions from '../store/actions';
+import * as actions from '../../store/actions';
 
 class Test extends Component {
     constructor(props) {

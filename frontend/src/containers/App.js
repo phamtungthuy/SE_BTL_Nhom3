@@ -10,7 +10,7 @@ import { userIsAuthenticated, userIsNotAuthenticated } from '../hoc/authenticati
 
 import { path } from '../utils'
 
-import Home from '../routes/Home';
+import Home from './Home/Home';
 import Login from '../components/Authentication/Login';
 import Header from './Header/Header';
 import System from '../routes/System';

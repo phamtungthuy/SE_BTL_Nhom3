@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import { push } from "connected-react-router";
 import { Route, Switch } from 'react-router-dom';
 import './Home.scss';
-import { path } from '../utils';
-import * as actions from '../store/actions';
-import Practice from './Practice';
-import Test from './Test';
-import Typing from './Typing';
-import Record from './Record';
-import HomePage from './HomePage';
-import AboutUs from './AboutUs';
-
+import { path } from '../../utils';
+import * as actions from '../../store/actions';
+import Practice from '../../components/Typing/Practice';
+import Typing from '../../components/Typing/Typing';
+import HomePage from '../../components/Views/HomePage';
+import AboutUs from '../../components/Views/AboutUs';
+import Record from '../../components/Views/Record';
+import Test from '../../components/Typing/Test'
 class Home extends Component {
     constructor(props) {
         super(props);

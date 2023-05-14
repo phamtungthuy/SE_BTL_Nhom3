@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { path } from '../utils';
+import { path } from '../../utils';
 import { Table } from 'reactstrap';
 import './Record.scss';
-import { getAllRecords } from '../services/otherService';
-import * as actions from '../store/actions/index';
+import { getAllRecords } from '../../services/otherService';
+import * as actions from '../../store/actions/index';
 
 
 class Record extends Component {

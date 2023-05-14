@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { path } from '../utils'
+import { path } from '../../utils'
 import './Typing.scss'
-import CustomParagraphs from './CustomParagraphs';
-import {emitter} from '../utils/emitter'
+import CustomParagraphs from '../../services/CustomParagraphs';
+import {emitter} from '../../utils/emitter'
 import Result from './Result';
-import * as actions from '../store/actions/index';
-import {getParagraphs, getTestParagraphs} from '../services/otherService';
+import * as actions from '../../store/actions/index';
+import {getParagraphs, getTestParagraphs} from '../../services/otherService'
 class Typing extends Component {
     constructor(props) {
         super(props);

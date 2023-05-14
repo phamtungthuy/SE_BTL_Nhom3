@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { path } from '../utils'
+import { path } from '../../utils'
 import Typing from './Typing'
-import CustomParagraphs from './CustomParagraphs';
-import * as actions from '../store/actions/index';
+import CustomParagraphs from '../../services/CustomParagraphs';
+import * as actions from '../../store/actions/index';
 class Practice extends Component {
 
     constructor(props) {
