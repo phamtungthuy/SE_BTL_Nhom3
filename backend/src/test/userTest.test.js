@@ -31,6 +31,24 @@ const newUser1 = {
     "gender" : 0
 }
 
+const newUser2 = {
+    "username" : "nghia56777",
+    "email" : "gg1@gmai.com",
+    "password" : "122234",
+    "address" : "VietNam",
+    "phoneNumber" : "1720523217",
+    "gender" : 0
+}
+
+const newUser3 = {
+    "username" : "nghia567",
+    "email" : "gg1@gmai.com",
+    // "password" : "1234",
+    "address" : "VietNam",
+    "phoneNumber" : "172017",
+    "gender" : 0
+}
+
 const existUser = {
     "username" : "chupu123",
     "email" : "gg@gmai.com",
